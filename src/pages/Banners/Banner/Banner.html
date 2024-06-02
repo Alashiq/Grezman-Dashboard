@@ -1,0 +1,60 @@
+<div class="w-auto md:p-8 p-4">
+    <!-- Inside Page -->
+
+    <div class="w-full md:px-4 px-0 pb-8 pt-2 bg-white shadow-2 rounded-lg text-lg text-gray-600 font-medium"
+        v-if="loaded==200">
+        <!-- Table Header -->
+        <Single-Page-Header title="بيانات البانر" url="/admin/banner/" urlLabel="قائمة البانرات"></Single-Page-Header>
+        <!-- End Table Header -->
+
+        <img :src="mainItem.image" class="h-32 mx-auto my-20" alt="">
+
+
+        <div class="flex items-center justify-center">
+            <div v-show="mainItem.is_active==1"
+                class="shadow-lg cursor-pointer h-10 w-28 text-sm text-green-700 flex items-center justify-center border border-green-700 rounded-lg JF-Flat bg-green-300">
+                مفعل
+            </div>
+            <div v-show="mainItem.is_active==0"
+                class="shadow-lg cursor-pointer h-10 w-28 text-sm text-red-700 flex items-center justify-center border border-red-700 rounded-lg JF-Flat bg-red-300">
+                غير مفعل
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- Btn Action -->
+        <div class="w-full lg:h-20 mt-12 lg:flex items-center justify-start text-sm cairo">
+
+            <router-link v-show="$parent.checkPermission('EditBanner') == true"
+                :to="'/admin/banner/' + $route.params.id + '/edit'"
+                class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
+                <i class="fa-solid fa-pen-to-square ml-2"></i>
+                تعديل
+            </router-link>
+
+
+
+            <div v-show="$parent.checkPermission('DeleteBanner') == true" @click="deleteMainItem"
+                class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
+                <i class="far fa-trash-alt ml-2"></i>
+                حذف البانر
+            </div>
+
+
+        </div>
+        <!-- End Btn Action -->
+    </div>
+
+    <Empty-Box v-if="loaded == 204" message="لا يوجد دور بهذا الرقم"></Empty-Box>
+    <Bad-Request v-if="loaded==400" :reload="reload" :message="errorMessage"></Bad-Request>
+    <No-Permission v-if="loaded==403" :message="errorMessage"></No-Permission>
+    <No-Internet v-if="loaded==404" :reload="reload"></No-Internet>
+
+
+    <!-- End Inside Page -->
+</div>

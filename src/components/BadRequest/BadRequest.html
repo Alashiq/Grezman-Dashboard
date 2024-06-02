@@ -1,0 +1,12 @@
+
+    <div class="w-full h-auto">
+        <div class="h-80 bg-white rounded-lg shadow-2 mx-auto my-8 flex items-center justify-center">
+            <div>
+                
+            <img src="@/assets/400.jpg" class="h-20 w-20 mx-auto mb-6" alt="">
+            <div class="flex items-center justify-center text-3xl font-bold text-gray-500 mb-3">عذرا</div>
+            <div class="flex items-center justify-center text-lg text-gray-500">{{!message?"حدث خطأ ما, الرجاء إعادة تحميل الصفحة":message}}</div>
+        <div @click="reload()" class=" mx-auto back-btn h-12 w-36 mt-8 flex items-center justify-center text-white text-base JF-Flat shadow rounded">إعادة تحميل</div>    
+        </div>
+        </div>
+    </div>

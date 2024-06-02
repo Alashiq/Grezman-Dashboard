@@ -1,0 +1,237 @@
+
+@import url(https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap);
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+@font-face {
+    font-family: 'JF-Flat-regular';
+    src: url('@/assets/fonts/JF-Flat-regular.ttf');
+}
+
+@font-face {
+    font-family: 'Swissra-Normal';
+    src: url('@/assets/fonts/Swissra-Normal.otf');
+}
+
+@font-face {
+    font-family: 'Swissra-Light';
+    src: url('@/assets/fonts/Swissra-Light.otf');
+}
+
+.tajawal{
+    font-family: 'Tajawal', sans-serif;
+}
+.cairo{
+    font-family: 'Cairo', sans-serif;
+}
+
+body{
+    font-family: 'Tajawal', sans-serif;
+}
+
+.JF-Flat{
+    font-family: 'JF-Flat-regular';
+}
+
+.Swissra-Normal{
+    font-family: 'Swissra-Normal';
+}
+
+.Swissra-Light{
+    font-family: 'Swissra-Light';
+}
+
+
+.shadow-1 {
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.shadow-2 {
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%),
+        0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+        0 0.25rem 0.53125rem rgb(4 9 20 / 5%),
+        0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+}
+
+.shadow-3 {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.07);
+}
+
+.btn-color-one {
+    background-color: #16a085;
+}
+
+.btn-color-one:hover {
+    background-color: #1abc9c;
+}
+
+/* Dashboard Layout Shadow */
+.layout-shadow {
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+}
+.layout-background {
+    background-color: #f0f2f5;
+}
+.layout-font-color {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Btn */
+
+.layout-btn {
+    background-color: #16a085;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 20px 0px,
+        rgba(156, 39, 176, 0.4) 0px 7px 10px -5px;
+}
+.layout-btn:hover {
+    background-color: #118d74;
+}
+.layout-btn:active {
+    background-color: #127e68;
+}
+
+/* Btn Add */
+
+.add-btn {
+    background-color: #8082ff;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+}
+.add-btn:hover {
+    background-color: #7b7df2;
+}
+.add-btn:active {
+    background-color: #6d6fe1;
+}
+
+/* Btn See */
+
+.see-btn {
+    background-color: #61a8e8;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.see-btn:hover {
+    background-color: #519ada;
+}
+.see-btn:active {
+    background-color: #3c86c7;
+}
+
+
+
+
+/* Btn Delete */
+
+.delete-btn {
+    background-color: #ff6d74;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.delete-btn:hover {
+    background-color: #ec5960;
+}
+.delete-btn:active {
+    background-color: #e64c54;
+}
+
+/* Btn Green */
+
+.green-btn {
+    background-color: #5bd999;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.green-btn:hover {
+    background-color: #41c080;
+}
+.green-btn:active {
+    background-color: #33b172;
+}
+
+
+/* Btn Yellow */
+
+.yellow-btn {
+    background-color: #ffc562;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.yellow-btn:hover {
+    background-color: #f0b550;
+}
+.yellow-btn:active {
+    background-color: #e0a43c;
+}
+
+
+/* Btn Pikn */
+
+.pink-btn {
+    background-color: #476088;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.pink-btn:hover {
+    background-color: #334c75;
+}
+.pink-btn:active {
+    background-color: #23395c;
+}
+
+
+/* Btn Gray */
+
+.gray-btn {
+    background-color: #aaaaaa;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+
+}
+.gray-btn:hover {
+    background-color: #8a8a8a;
+}
+.gray-btn:active {
+    background-color: #707070;
+}
+
+
+
+/* Back To List BTN */
+
+.back-btn {
+    background-color: #8082ff;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+.back-btn:hover {
+    background-color: #7b7df2;
+}
+.back-btn:active {
+    background-color: #6d6fe1;
+}
+
+
+
+
+/* Table */
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}

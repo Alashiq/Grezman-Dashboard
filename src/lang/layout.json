@@ -1,0 +1,21 @@
+{
+    "ar":{
+        "headerWelcome":"مرحبا بك",
+        "editAccount":"تعديل حسابي",
+        "logout":"تسجيل الخروج",
+
+
+        "SideHeader":"لوحة التحكم"
+
+    },
+
+
+    "en":{
+        "headerWelcome":"Welcome",
+        "editAccount":"Edit Account",
+        "logout":"Logout",
+
+        "SideHeader":"Admin Panel"
+
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "ar":{
+        "pageHeader":"الملف الشخصي",
+        "choosePhoto":"إختر الصورة",
+        "save":"حفظ",
+        "personalInfo":"البيانات الشخصية",
+        "firstName":"الإسم",
+        "lastName":"اللقب",
+        "phone":"رقم الهاتف",
+        "level":"نوع الحساب",
+        "college":"الكلية",
+        "department":"القسم",
+        "role":"دور الحساب",
+        "changePassword":"تغيير كلمة المرور",
+        "currentPassword":"كلمة المرور الحالية",
+        "newPassword":"كلمة المرور الجديدة",
+        "confirmPassword":"تأكيد كلمة المرور",
+
+
+        "SideHeader":"لوحة التحكم"
+
+    },
+
+
+    "en":{
+        "pageHeader":"My Profile",
+        "choosePhoto":"Choose Photo",
+        "save":"Save",
+        "personalInfo":"Personal Information",
+        "firstName":"First Name",
+        "lastName":"Last Name",
+        "phone":"Phone Number",
+        "level":"Account Type",
+        "college":"College",
+        "department":"Department",
+        "role":"Account Role",
+        "changePassword":"Change Your Password",
+        "currentPassword":"Current Password",
+        "newPassword":"New Password",
+        "confirmPassword":"Confirm Password",
+
+        "SideHeader":"Admin Panel"
+
+    }
+}

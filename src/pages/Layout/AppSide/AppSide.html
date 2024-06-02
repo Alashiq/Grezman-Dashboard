@@ -1,0 +1,112 @@
+<div :class="{
+            'md:right-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-no-wrap md:overflow-hidden bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 bg-cover bg-center layout-shadow':
+                1 == 1,
+            ' hidden': menu == false,
+            ' md:right-0': lang == 'ar',
+            ' md:left-0': lang == 'en'
+        }">
+    <div class="h-full w-full" style=" background: #fff;">
+        <!-- Title Side Menu -->
+        <div class="h-20 items-center w-full flex justify-center text-xl border-b font-medium orange-color">
+            {{ t.SideHeader }}
+        </div>
+        <!-- End Title Side Menu -->
+
+        <div @click="logout">logout</div>
+
+
+        
+        <!-- New List -->
+        <div v-for="item in pages" :key="item.id" class="JF-Flat">
+            <!-- Label -->
+            <div v-if="item.target==0" v-show="$parent.checkPermission(item.role) == true" class="w-full flex items-center h-10 mt-2">
+                <div class="h-px w-4 bg-gray-400  mt-1"></div>
+                <div class="w-3"></div>
+                <div class="Swissra-Light" style="color: #a1acb8;">{{ lang=='ar'? item.name : item.nameEn}}</div>
+            </div>
+            <!-- End Label -->
+            <!-- Father List -->
+            <div v-else-if="item.list.length>0" v-show="$parent.checkPermission(item.role) == true" class="item" @click="toggleSideList(item.id)">
+                <div v-if="pageActive==item.id"
+                    class="flex items-center justify-between h-12 w-auto mx-3 rounded-md px-3"
+                    style="color: #696cff; background-color: rgba(105,108,255,.16);">
+                    <div class="flex items-center">
+                        <i :class="item.icon + ' text-md'"></i>
+                        <div class="w-2"></div>
+
+                        <div class="text-sm">{{ lang=='ar'? item.name : item.nameEn}}</div>
+                    </div>
+                    <i v-if="openPageList==item.id" class='fas fa-chevron-down text-md'></i>
+                    <i v-else-if="lang=='ar'" class='fas fa-chevron-left text-md'></i>
+                    <i v-else class='fas fa-chevron-right text-md'></i>
+                </div>
+                <div v-else class="flex items-center justify-between h-12 w-auto mx-3 rounded-md px-3  hover-side-menu"
+                    style="color: #697a8d;">
+                    <div class="flex items-center">
+                        <i :class="item.icon + ' text-md'"></i>
+                        <div class="w-2"></div>
+                        <div class="text-sm">{{ lang=='ar'? item.name : item.nameEn}}</div>
+                    </div>
+                    <i v-if="openPageList==item.id" class='fas fa-chevron-down text-md'></i>
+                    <i v-else-if="lang=='ar'" class='fas fa-chevron-left text-md'></i>
+                    <i v-else class='fas fa-chevron-right text-md'></i>
+                </div>
+            </div>
+            <!-- End Father List -->
+
+            <!-- Item List -->
+            <div v-else class="item"  v-show="$parent.checkPermission(item.role) == true">
+                <router-link  :to="item.url">
+                <div v-if="pageActive==item.id" class="flex items-center h-12 w-auto mx-3 rounded-md px-3"
+                    style="color: #696cff; background-color: rgba(105,108,255,.16);">
+                    <i :class="item.icon + ' text-md'"></i>
+                    <div class="w-2"></div>
+                    <div class="text-sm">{{ lang=='ar'? item.name : item.nameEn}}</div>
+                </div>
+                <div v-else class="flex items-center h-12 w-auto mx-3 rounded-md px-3  hover-side-menu" style="color: #697a8d;">
+                    <i :class="item.icon + ' text-md'"></i>
+                    <div class="w-2"></div>
+                    <div class="text-sm">{{ lang=='ar'? item.name : item.nameEn}}</div>
+                </div>
+                </router-link>
+            </div>
+            <!-- End Item List -->
+
+
+
+
+            <!-- Sub -->
+            <div v-if="openPageList==item.id">
+
+                <div v-for="subItem in item.list" :key="subItem.id" :to="subItem.url">
+                    <router-link  :to="subItem.url"  v-show="$parent.checkPermission(subItem.role) == true">
+
+                    <div v-if="subPageActive==subItem.id && pageActive==item.id"
+                        class="flex items-center h-12 w-auto mx-3 rounded-md px-3"
+                        style="color: #696cff;">
+                        <div class="w-1"></div>
+                        <span class="rounded-full bg-gray-400"
+                            style="background-color: #6a6cff; border: 4px solid #e7e7ff; height: 15px; width: 15px;"></span>
+                        <div class="w-3"></div>
+                        <div class="text-sm">{{ lang=='ar'? subItem.name : subItem.nameEn}}</div>
+                    </div>
+                    <div v-else class="flex items-center h-12 w-auto mx-3 rounded-md px-3  hover-side-menu" style="color: #697a8d;">
+                        <div class="w-1"></div>
+                        <span class="rounded-full bg-gray-400"
+                            style="background-color: #b4bdc6; border: 4px solid #ffffff; height: 15px; width: 15px;"></span>
+                        <div class="w-3"></div>
+                        <div class="text-sm">{{ lang=='ar'? subItem.name : subItem.nameEn}}</div>
+                    </div>
+                    </router-link>
+
+                </div>
+
+            </div>
+            <!-- End Sub -->
+
+
+        </div>
+        <!-- End New List -->
+
+    </div>
+</div>

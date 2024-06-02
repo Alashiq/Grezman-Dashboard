@@ -1,0 +1,33 @@
+<div v-if="loadAuth" class="w-full" :dir="dir" @click="closeMenu($event)">
+<!-- Side Menu -->
+<App-Side></App-Side>
+<!-- End Side Menu -->
+
+<!-- Left Part -->
+<div v-if="dir=='rtl'" class="relative md:mr-64">
+<!-- Header Bar -->
+<App-Header></App-Header>
+<!-- End Header Bar -->
+<RouterView />
+
+<div class="h-12"></div>
+</div>
+<!-- End Left Part -->
+
+<!-- Left Part -->
+<div v-else class="relative md:ml-64">
+<!-- Header Bar -->
+<App-Header></App-Header>
+<!-- End Header Bar -->
+<RouterView />
+
+
+<div class="h-12"></div>
+
+</div>
+<!-- End Left Part -->
+
+
+<Loading-Box v-if="loading == true"></Loading-Box>
+</div>
+<div v-else></div>

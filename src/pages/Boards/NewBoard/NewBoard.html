@@ -1,0 +1,191 @@
+<div class="w-auto md:p-8 p-4">
+    <!-- Inside Page -->
+
+    <div class="w-full md:px-4 px-0 pb-8 pt-2 bg-white shadow-2 rounded-lg text-lg text-gray-600 font-medium"
+        v-if="loaded==200">
+        <!-- Table Header -->
+        <Single-Page-Header title="أضف إعلان" url="/admin/board/" urlLabel="قائمة الإعلانات"></Single-Page-Header>
+        <!-- End Table Header -->
+
+
+
+        <!-- Review Upload Photo -->
+        <div class="my-8 bg-blue-200a">
+            <div class="flex items-center justify-center">
+                <div class=" border">
+                    <img v-if="formData.file!=''" :src="previewImage" class="h-52 w-52" />
+                    <div v-else class="h-52 w-52 bg-gray-50 flex items-center justify-center text-lg ">لا يوجد صورة
+                    </div>
+                </div>
+                <div class="h-16 w-32 bg-blue-200 md:mr-4 md:ml-0 md:my-0 mx-auto my-4">
+                    <input type="file" v-on:change="onChange"
+                        class="cursor-pointer absolute block h-16 w-32 opacity-0 pin-r pin-t" />
+                    <div
+                        class="ml-2 bg-blue-400 h-16 w-32 text-white flex items-center justify-center rounded shadow cursor-pointer hover:bg-blue-500 text-lg">
+                        <i class="fas fa-folder-plus ml-2"></i>
+                        إختر الصورة
+                    </div>
+                </div>
+            </div>
+            <div class="h-8 JF-Flat text-sm text-red-400 text-center flex items-center justify-center w-full">
+                {{ formValidate.file }}
+            </div>
+        </div>
+        <!-- End Review Upload Photo -->
+
+        <!-- Grid -->
+        <div class="bg-blue-600a grid lg:grid-cols-2 md:grid-cols-2">
+
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    العنوان
+                </div>
+
+                <input type='text' v-model='formData.title' v-on:change='validateTitle'
+                    class='h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base'>
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.title }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+
+
+
+
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    النوع
+                </div>
+                <select v-model="formData.level" v-on:change="validateLevel"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option value="0" v-show="user.level==1">عام</option>
+                    <option value="1" v-show="user.level<=2">كلية</option>
+                    <option value="2" v-show="user.level<=3">قسم</option>
+                </select>
+
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.level }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    مفعل
+                </div>
+
+
+                <label class="relative inline-flex items-center me-5 cursor-pointer  my-3">
+                    <input type="checkbox" v-model="formData.is_active" class="sr-only peer" checked>
+                    <div
+                        class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
+                    </div>
+                    <span class="ms-3 mr-3 text-sm font-medium text-gray-900 dark:text-gray-500">
+                        {{formData.is_active?'نشط':'غير نشط'}}
+
+                    </span>
+                </label>
+
+            </div>
+            <!-- End Item -->
+
+
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+
+
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class="w-full px-4 py-4" v-if="formData.level>0">
+                <div class="h-9 JF-Flat flex items-center text-gray-500 mr-2 text-sm">
+                    الكلية  
+                </div>
+                <select v-model="formData.college" v-on:change="validateCollege"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option v-if="user.level==1" v-for="(item, index) in college" :key="index" :value="item.Faculty_no">{{ item.Faculty_name
+                        }}
+                    </option>
+                    <option v-if="user.level>1 && user.college_id==item.Faculty_no" v-for="(item, index) in college" :key="index" :value="item.Faculty_no">{{ item.Faculty_name
+                    }}
+                </option>
+                </select>
+                <div class="h-8 JF-Flat text-sm text-red-400 mr-2 flex items-center">
+                    {{ formValidate.college }}
+                </div>
+            </div>
+            <!-- Item -->
+
+
+
+            
+            <!-- Item -->
+            <div class="w-full px-4 py-4" v-if="formData.level>1">
+                <div class="h-9 JF-Flat flex items-center text-gray-500 mr-2 text-sm">
+                    القسم
+                </div>
+
+                <select v-model="formData.department" v-on:change="validateDepartment"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option v-for="(item, index) in department" :key="index" :value="item.dep_no"
+                        v-if="
+                        (item.Faculty_no === formData.college  && user.level<=2)||
+                        (item.Faculty_no === formData.college  && user.department_id==item.dep_no)
+                        ">{{ item.dep_name }}
+                    </option>
+                </select>
+                <div class="h-8 JF-Flat text-sm text-red-400 mr-2 flex items-center">
+                    {{ formValidate.department }}
+                </div>
+            </div>
+            <!-- Item -->
+
+
+
+
+        </div>
+        <!-- Grid -->
+
+
+
+        <!-- Item -->
+        <div class='w-full px-4 py-4  JF-Flat'>
+            <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                المحتوى
+            </div>
+            <textarea v-model='formData.content' v-on:change='validateContent'
+                class='w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base' cols="30"
+                rows="3"></textarea>
+
+            <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                {{ formValidate.content }}
+            </div>
+        </div>
+        <!-- End Item -->
+
+
+        <!-- Action Part -->
+        <div class="flex items-center h-20 mx-4">
+            <Btn-Submit-New-Item label="إضافة" :submit="addNewItem"></Btn-Submit-New-Item>
+        </div>
+        <!-- End Action Part -->
+
+    </div>
+
+    <Empty-Box v-if="loaded == 204" message="لا يوجد إعلان بهذا الرقم"></Empty-Box>
+
+    <Bad-Request v-if="loaded==400" :reload="reload" :message="errorMessage"></Bad-Request>
+    <No-Permission v-if="loaded==403" :message="errorMessage"></No-Permission>
+    <No-Internet v-if="loaded==404" :reload="reload"></No-Internet>
+
+    <!-- End Inside Page -->
+</div>

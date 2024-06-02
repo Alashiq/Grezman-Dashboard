@@ -1,0 +1,41 @@
+<!-- Pagination -->
+<div class="h-14 flex items-center justify-start px-6 shadow-2 rounded-lg bg-white cairo">
+    <div class="flex items-center text-sm text-gray-600">
+        <div class="text-gray-500">عددالصفوف</div>
+        <select class="mr-2" @change="changePerPage($event)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+        <div class="mr-4">{{itemTo}}-{{itemFrom}}</div>
+
+        <div class="mr-2 ml-1 text-gray-500">من</div>
+        <div>{{totalRows}}</div>
+        <div class=" text-gray-500 mr-1">سجل</div>
+    </div>
+
+    <div class=" flex text-sm items-center mr-10">
+        <div v-if="pageId>1" class="ml-5 text-gray-600" @click="moveToPrevius()">
+            <i class='fas fa-chevron-right ml-1'></i>
+            السابق
+        </div>
+        <div v-else class="text-gray-400 ml-5">
+            <i class='fas fa-chevron-right ml-1'></i>
+            السابق
+        </div>
+
+        <div class="text-base font-medium">{{pageId}}</div>
+
+        <div v-if="pageId<lastPage" class=" mr-5 text-gray-600" @click="moveToNext()">التالي
+            <i class='fas fa-chevron-left mr-1'></i>
+
+        </div>
+        <div v-else class="text-gray-400 mr-5">التالي
+            <i class='fas fa-chevron-left mr-1'></i>
+        </div>
+
+    </div>
+
+</div>
+<!-- End Pagination -->

@@ -1,0 +1,66 @@
+<div class="w-auto md:p-8 p-4">
+    <!-- Inside Page -->
+
+    <div class="w-full md:px-4 px-0 pb-8 pt-2 bg-white shadow-2 rounded-lg text-lg text-gray-600 font-medium"
+        v-if="loaded==200">
+        <!-- Table Header -->
+        <Single-Page-Header title="أضف بانر" url="/admin/banner/" urlLabel="قائمة البانرات"></Single-Page-Header>
+        <!-- End Table Header -->
+
+
+
+        <!-- Review Upload Photo -->
+        <div class="my-8 bg-blue-200a">
+            <div class="flex items-center justify-center">
+                <div class=" border">
+                    <img v-if="formData.file!=''" :src="previewImage" class="h-52 w-52" />
+                    <div v-else class="h-52 w-52 bg-gray-50 flex items-center justify-center text-lg ">لا يوجد صورة
+                    </div>
+                </div>
+                <div class="h-16 w-32 bg-blue-200 md:mr-4 md:ml-0 md:my-0 mx-auto my-4">
+                    <input type="file" v-on:change="onChange"
+                        class="cursor-pointer absolute block h-16 w-32 opacity-0 pin-r pin-t" />
+                    <div
+                        class="ml-2 bg-blue-400 h-16 w-32 text-white flex items-center justify-center rounded shadow cursor-pointer hover:bg-blue-500 text-lg">
+                        <i class="fas fa-folder-plus ml-2"></i>
+                        إختر الصورة
+                    </div>
+                </div>
+            </div>
+            <div class="h-8 JF-Flat text-sm text-red-400 text-center flex items-center justify-center w-full">
+                {{ formValidate.file }}
+            </div>
+        </div>
+        <!-- End Review Upload Photo -->
+
+
+        <div class="flex items-center justify-center">
+            <div v-show="formData.is_active==1" @click="formData.is_active=0"
+                class="shadow-lg cursor-pointer h-10 w-28 text-sm text-green-700 flex items-center justify-center border border-green-700 rounded-lg JF-Flat bg-green-300">
+                مفعل
+            </div>
+            <div v-show="formData.is_active==0" @click="formData.is_active=1"
+            class="shadow-lg cursor-pointer h-10 w-28 text-sm text-red-700 flex items-center justify-center border border-red-700 rounded-lg JF-Flat bg-red-300">
+            غير مفعل
+        </div>
+        </div>
+
+
+
+
+        <!-- Action Part -->
+        <div class="flex items-center h-20 mx-4">
+            <Btn-Submit-New-Item label="إضافة" :submit="addNewItem"></Btn-Submit-New-Item>
+        </div>
+        <!-- End Action Part -->
+
+    </div>
+
+    <Empty-Box v-if="loaded == 204" message="لا يوجد بانر بهذا الرقم"></Empty-Box>
+
+    <Bad-Request v-if="loaded==400" :reload="reload" :message="errorMessage"></Bad-Request>
+    <No-Permission v-if="loaded==403" :message="errorMessage"></No-Permission>
+    <No-Internet v-if="loaded==404" :reload="reload"></No-Internet>
+
+    <!-- End Inside Page -->
+</div>

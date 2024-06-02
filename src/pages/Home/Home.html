@@ -1,0 +1,147 @@
+<div class="w-auto md:p-8 p-4">
+    <div
+        class="w-full grid xl:grid-cols-3 JF-Flat"
+        v-if="loaded == 200"
+    >
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center "
+        >
+            <div
+                class="h-16 w-16 bg-blue-400 rounded-full text-2xl items-center justify-center flex text-white"
+            >
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{ mainItem.new_student_today }} طالب 
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    الطلبة الجدد اليوم  
+                </div>
+            </div>
+        </div>
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
+        >
+            <div
+                class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white"
+            >
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{ mainItem.new_student_week}} طالب
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    الطلبة الجدد الأسبوع
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
+        >
+            <div
+                class="h-16 w-16 bg-red-400 rounded-full text-2xl items-center justify-center flex text-white"
+            >
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{mainItem.new_student_month }} طالب
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    الطلبة الجدد الشهر
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
+        >
+            <div
+                class="h-16 w-16 bg-yellow-400 rounded-full text-2xl items-center justify-center flex text-white"
+            >
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{ mainItem.all_student }} طالب
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    كل الطلبة
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
+        >
+            <div
+                class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
+                style="background-color: #a4c939;"
+            >
+                <i class="fab fa-android"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{ mainItem.all_student_android }} طالب
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    مستخدمي الاندرويد
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
+        >
+            <div
+                class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
+                style="background-color: #464646;"
+           
+                >
+                <i class="fab fa-apple"></i>
+            </div>
+            <div class="mr-8">
+                <div
+                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
+                >
+                    {{ mainItem.all_student_ios }} طالب
+                </div>
+                <div class="text-gray-500 flex items-center h-4">
+                    مستخدمي IOS
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="w-auto mx-4 bg-white shadow-3 mt-8 rounded-lg px-6"
+        v-if="loaded == 200"
+    >
+        <div
+            class="h-20 w-full flex items-center text-2xl bg-blu font-semibold cairo text-gray-600 border-b"
+        >
+            مخطط الزيارات
+        </div>
+
+        <div class="h-96 w-full"></div>
+    </div>
+
+    <Empty-Box v-if="loaded == 204"></Empty-Box>
+    <Bad-Request v-if="loaded==400" :reload="reload" :message="errorMessage"></Bad-Request>
+    <No-Permission v-if="loaded==403" :message="errorMessage"></No-Permission>
+    <No-Internet v-if="loaded==404" :reload="reload"></No-Internet>
+
+</div>
