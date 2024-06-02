@@ -1,7 +1,22 @@
+import EmptyBox from '@/components/EmptyBox/EmptyBox';
+import BadRequest from '@/components/BadRequest/BadRequest';
+import NoPermission from '@/components/NoPermission/NoPermission';
+import NoInternet from '@/components/NoInternet/NoInternet';
+import PaginationBar from '@/components/PaginationBar/PaginationBar';
+import SinglePageHeader from '@/components/SinglePageHeader/SinglePageHeader';
+
 
 import Swal from "sweetalert2";
 import { mapGetters, mapActions,mapMutations } from "vuex"
 export default {
+    components: {
+        'Empty-Box': EmptyBox,
+        'BadRequest': BadRequest,
+        'No-Permission': NoPermission,
+        'No-Internet': NoInternet,
+        'Pagination-Bar': PaginationBar,
+        'Single-Page-Header': SinglePageHeader,
+      },
     data() {
         return {
             mainList: [],
