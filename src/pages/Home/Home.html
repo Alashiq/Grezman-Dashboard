@@ -1,43 +1,44 @@
 <div class="w-auto md:p-8 p-4">
     <div
-        class="w-full grid xl:grid-cols-3 JF-Flat"
+        class="w-full grid xl:grid-cols-3"
         v-if="loaded == 200"
     >
-        <div v-show="$parent.$parent.checkPermission('EditRoleAdmin') == true"
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center "
+        <div
+            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
         >
             <div
                 class="h-16 w-16 bg-blue-400 rounded-full text-2xl items-center justify-center flex text-white"
             >
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-eye"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{ mainItem.new_student_today }} طالب 
+                    {{ mainItem.users }} زائر
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الطلبة الجدد اليوم  
+                    الزيارات اليوم
                 </div>
             </div>
         </div>
+
         <div
             class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
         >
             <div
                 class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white"
             >
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-eye"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{ mainItem.new_student_week}} طالب
+                    {{ mainItem.users}} زائر
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الطلبة الجدد الأسبوع
+                    زيارات الأسبوع
                 </div>
             </div>
         </div>
@@ -48,16 +49,16 @@
             <div
                 class="h-16 w-16 bg-red-400 rounded-full text-2xl items-center justify-center flex text-white"
             >
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-eye"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{mainItem.new_student_month }} طالب
+                    {{mainItem.users }} زائر
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الطلبة الجدد الشهر
+                    زيارات الشهر
                 </div>
             </div>
         </div>
@@ -68,16 +69,16 @@
             <div
                 class="h-16 w-16 bg-yellow-400 rounded-full text-2xl items-center justify-center flex text-white"
             >
-                <i class="fas fa-users"></i>
+                <i class="fas fa-comment-dots"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{ mainItem.all_student }} طالب
+                    {{ mainItem.users }} رسالة
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    كل الطلبة
+                    رسائل اليوم
                 </div>
             </div>
         </div>
@@ -86,19 +87,18 @@
             class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
         >
             <div
-                class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
-                style="background-color: #a4c939;"
+                class="h-16 w-16 bg-gray-400 rounded-full text-2xl items-center justify-center flex text-white"
             >
-                <i class="fab fa-android"></i>
+                <i class="fas fa-comment-dots"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{ mainItem.all_student_android }} طالب
+                    {{ mainItem.users }} رسالة
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    مستخدمي الاندرويد
+                    الرسائل الغير محلولة
                 </div>
             </div>
         </div>
@@ -107,20 +107,18 @@
             class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
         >
             <div
-                class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
-                style="background-color: #464646;"
-           
-                >
-                <i class="fab fa-apple"></i>
+                class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white"
+            >
+                <i class="fas fa-comment-dots"></i>
             </div>
             <div class="mr-8">
                 <div
                     class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
                 >
-                    {{ mainItem.all_student_ios }} طالب
+                    {{ mainItem.users }} رسالة
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    مستخدمي IOS
+                    الرسائل المحلولة
                 </div>
             </div>
         </div>

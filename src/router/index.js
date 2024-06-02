@@ -12,33 +12,19 @@ import NewRole from "../pages/Roles/NewRole/NewRole.vue";
 import Role from "../pages/Roles/Role/Role.vue";
 import EditRole from "../pages/Roles/EditRole/EditRole.vue";
 import EditAdminRole from "../pages/Admins/EditAdminRole/EditAdminRole.vue";
-
-
+import Currencies from '@/pages/Currencies/Currencies.vue';
+import Currency from '@/pages/Currencies/Currency/Currency.vue';
+import NewCurrency from '@/pages/Currencies/NewCurrency/NewCurrency.vue';
+import EditCurrency from '@/pages/Currencies/EditCurrency/EditCurrency.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../pages/AboutView.vue')
-    },
     {
       path: "/login",
       name: 'login',
       component: Login
     },
-    // {
-    //   path: "/admin",
-    //   component: Home
-    // },
+
     {
       path: "/",
       name: "layout",
@@ -86,6 +72,28 @@ const router = createRouter({
       },
       
 
+
+
+ { 
+  path: 'admin/currency/new', 
+  component: NewCurrency 
+  }, 
+  { 
+  path: 'admin/currency', 
+  component: Currencies 
+  }, 
+  { 
+  path: 'admin/currency/:id', 
+  component: Currency 
+  }, 
+  { 
+  path: 'admin/currency/:id/edit', 
+  component: EditCurrency 
+  }, 
+  
+  
+
+  
 
 
       ]

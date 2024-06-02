@@ -26,6 +26,43 @@ export default {
                 list: [],
             },
 
+            {
+                id: 4,
+                target: 0, // 0 label - 1 page
+                name: "العمليات",
+                nameEn: "Settings",
+                role: "SettingLabel",
+                url: "/admin",
+                icon: "fas fa-home",
+                list: [],
+            },
+
+            {
+                id: 10,
+                target: 1,
+                name: 'العملات',
+                nameEn: 'Currencies',
+                role: 'RolePermissionsList',
+                url: '/currency',
+                icon: 'fas fa-user-shield',
+                list: [
+                    {
+                        id: 1,
+                        name: 'قائمة العملات',
+                        nameEn: 'Currencies List',
+                        role: 'ReadCurrency',
+                        url: '/admin/currency',
+                    },
+                    {
+                        id: 2,
+                        name: 'أضف عملة',
+                        nameEn: 'New Currencies',
+                        role: 'CreateCurrency',
+                        url: '/admin/currency/new',
+                    },
+                ],
+            },
+
 
 
 
@@ -80,6 +117,7 @@ export default {
                     },
                 ],
             },
+
 
 
 

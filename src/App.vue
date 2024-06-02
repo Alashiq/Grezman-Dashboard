@@ -4,8 +4,7 @@
         <RouterView />
 </template>
 
-<style scoped>
-</style>
+
 <script >
 
 export default {
@@ -14,7 +13,6 @@ export default {
 },
 data: function () {
         return {
-            xxx:'aaa',
         };
     },
 };

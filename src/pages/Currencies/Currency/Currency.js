@@ -1,6 +1,22 @@
-
 import Swal from "sweetalert2";
+import { mapGetters, mapActions,mapMutations } from "vuex";
+import EmptyBox from '@/components/EmptyBox/EmptyBox.vue';
+import BadRequest from '@/components/BadRequest/BadRequest.vue';
+import NoPermission from '@/components/NoPermission/NoPermission.vue';
+import NoInternet from '@/components/NoInternet/NoInternet.vue';
+import PaginationBar from '@/components/PaginationBar/PaginationBar.vue';
+import SinglePageHeader from '@/components/SinglePageHeader/SinglePageHeader.vue';
+import BtnSubmitNewItem from "@/components/BtnSubmitNewItem/BtnSubmitNewItem.vue";
 export default {
+    components: {
+        'Empty-Box': EmptyBox,
+        'BadRequest': BadRequest,
+        'No-Permission': NoPermission,
+        'No-Internet': NoInternet,
+        'Pagination-Bar': PaginationBar,
+        'Single-Page-Header': SinglePageHeader,
+        'Btn-Submit-New-Item':BtnSubmitNewItem,
+      },
     data() {
         return {
             mainItem: [],

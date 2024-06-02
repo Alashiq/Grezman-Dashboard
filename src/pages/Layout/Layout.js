@@ -10,7 +10,6 @@ export default {
     data: function () {
         return {
             t: language,
-            xxx:'aaa',
         };
     },
     components: {
@@ -54,7 +53,6 @@ export default {
     mounted() {
 
         if (this.auth) {
-            alert("hello");
         } else if (localStorage.getItem("token") && !this.auth) {
             axios.defaults.headers.common["Authorization"] =
                 "Bearer " + localStorage.getItem("token");

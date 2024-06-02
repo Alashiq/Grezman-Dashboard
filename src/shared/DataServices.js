@@ -2,82 +2,82 @@ import axios from "axios";
 export default {
     // ============== Auth Part =======================
     Login(loginData) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/login", loginData);
+        return axios.post("https://cloudsoft.ly/admin/api/login", loginData);
     },
     CheckToken() {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/auth/auth");
+        return axios.get("https://cloudsoft.ly/admin/api/auth/auth");
     },
     Logout() {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/logout");
+        return axios.get("https://cloudsoft.ly/admin/api/logout");
     },
     ChangeName(formData) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/auth/editName", formData);
+        return axios.post("https://cloudsoft.ly/admin/api/auth/editName", formData);
     },
     ChangePassword(formData) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/auth/editPassword", formData);
+        return axios.post("https://cloudsoft.ly/admin/api/auth/editPassword", formData);
     },
     ChangePhoto(data, config) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/auth/editPhoto", data, config);
+        return axios.post("https://cloudsoft.ly/admin/api/auth/editPhoto", data, config);
     },
     // ============== Home Part =======================
     GetHome() {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/home");
+        return axios.get("https://cloudsoft.ly/admin/api/home");
     },
 
     
     // ============== Admin Part =======================
     GetAllAdmins(page,countPerPage,tag,phone,firstName,lastName) {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/admin?page=" + page + "&count=" + countPerPage + "&state=" + tag + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
+        return axios.get("https://cloudsoft.ly/admin/api/admin?page=" + page + "&count=" + countPerPage + "&state=" + tag + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
     },
     ActiveAdmin(admin) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/active");
+        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/active");
     },
     DisActiveAdmin(admin) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/disActive");
+        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/disActive");
     },
     DeleteAdmin(admin) {
-        return axios.delete("https://mobile.sabu.edu.ly/admin/api/admin/" + admin);
+        return axios.delete("https://cloudsoft.ly/admin/api/admin/" + admin);
     },
     BannedAdmin(admin) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/banned");
+        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/banned");
     },
     ResetAdminPassword(admin) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/reset");
+        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/reset");
     },
     GetAdminById(admin) {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/admin/" + admin);
+        return axios.get("https://cloudsoft.ly/admin/api/admin/" + admin);
     },
     GetAdminByIdWithPermissions(admin) {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/withPermissions");
+        return axios.get("https://cloudsoft.ly/admin/api/admin/" + admin + "/withPermissions");
     },
     GetAdminRolesForNewAdmin() {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/admin/role");
+        return axios.get("https://cloudsoft.ly/admin/api/admin/role");
     },
     PostNewAdmin(admin) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/admin", admin);
+        return axios.post("https://cloudsoft.ly/admin/api/admin", admin);
     },
     UpdateAdminRole(admin, formData) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/admin/" + admin + "/role", formData);
+        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/role", formData);
     },
 
     // ============== Role Part =======================
     GetAllRoles(page,countPerPage,name) {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/permission?page=" + page + "&count=" + countPerPage + "&name=" + name);
+        return axios.get("https://cloudsoft.ly/admin/api/permission?page=" + page + "&count=" + countPerPage + "&name=" + name);
     },
     GetRoleById(role) {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/permission/" + role);
+        return axios.get("https://cloudsoft.ly/admin/api/permission/" + role);
     },
     DeleteRole(role) {
-        return axios.delete("https://mobile.sabu.edu.ly/admin/api/permission/" + role);
+        return axios.delete("https://cloudsoft.ly/admin/api/permission/" + role);
     },
     GetAllPermissionsForNewRole() {
-        return axios.get("https://mobile.sabu.edu.ly/admin/api/permission/allPermissions");
+        return axios.get("https://cloudsoft.ly/admin/api/permission/allPermissions");
     },
     PostNewRole(role) {
-        return axios.post("https://mobile.sabu.edu.ly/admin/api/permission", role);
+        return axios.post("https://cloudsoft.ly/admin/api/permission", role);
     },
     EditRole(role, formData) {
-        return axios.put("https://mobile.sabu.edu.ly/admin/api/permission/" + role, formData);
+        return axios.put("https://cloudsoft.ly/admin/api/permission/" + role, formData);
     },
 
 
@@ -86,23 +86,23 @@ export default {
 
  // ============== Currency Part =======================
 GetAllCurrencies(page,countPerPage,name,abbreviation) { 
-return axios.get('https://mobile.sabu.edu.ly/admin/api/currency?page=' + page + '&count=' + countPerPage+ '&name=' + name+ '&abbreviation=' + abbreviation);
+return axios.get('https://cloudsoft.ly/admin/api/currency?page=' + page + '&count=' + countPerPage+ '&name=' + name+ '&abbreviation=' + abbreviation);
 }, 
 
 DeleteCurrency(id){
-return axios.delete('https://mobile.sabu.edu.ly/admin/api/currency/' + id);
+return axios.delete('https://cloudsoft.ly/admin/api/currency/' + id);
 }, 
 GetCurrencyById(id){
-return axios.get('https://mobile.sabu.edu.ly/admin/api/currency/' + id);
+return axios.get('https://cloudsoft.ly/admin/api/currency/' + id);
 }, 
 PostNewCurrency(formData){
-return axios.post('https://mobile.sabu.edu.ly/admin/api/currency' , formData);
+return axios.post('https://cloudsoft.ly/admin/api/currency' , formData);
 }, 
 EditCurrency(id,formData){
-return axios.put('https://mobile.sabu.edu.ly/admin/api/currency/' + id , formData);
+return axios.put('https://cloudsoft.ly/admin/api/currency/' + id , formData);
 }, 
 GetCurrencyNew(){
-return axios.get('https://mobile.sabu.edu.ly/admin/api/currency/new');
+return axios.get('https://cloudsoft.ly/admin/api/currency/new');
 }, 
 
 
