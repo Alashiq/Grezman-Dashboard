@@ -125,30 +125,30 @@
         <!-- Btn Action -->
         <div class="w-full lg:h-20 mt-12 lg:flex items-center justify-start text-sm cairo">
             <div v-show="
-                        $parent.checkPermission('ResetPasswordAdmin') == true
+                        $parent.$parent.checkPermission('ResetPasswordAdmin') == true
                     " v-if="mainItem.state != 2" @click="resetPassword"
                 class="h-12 px-6 mx-4 my-2 bg-blue-400 hover:bg-blue-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fas fa-fingerprint ml-2"></i>
                 تهيئة كلمة المرور
             </div>
-            <div v-show="$parent.checkPermission('ActiveAdmin') == true" v-if="mainItem.state == 0" @click="activeAdmin"
+            <div v-show="$parent.$parent.checkPermission('ActiveAdmin') == true" v-if="mainItem.state == 0" @click="activeAdmin"
                 class="h-12 px-6 mx-4  md:mx-0 my-2 bg-green-400 hover:bg-green-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fas fa-lock-open ml-2"></i>
                 تفعيل الحساب
             </div>
-            <div v-show="$parent.checkPermission('DisActiveAdmin') == true" v-else-if="mainItem.state == 1"
+            <div v-show="$parent.$parent.checkPermission('DisActiveAdmin') == true" v-else-if="mainItem.state == 1"
                 @click="disActiveAdmin"
                 class="h-12 px-6 mx-4 my-2 bg-yellow-400 hover:bg-yellow-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fas fa-lock ml-2"></i>
                 إلغاء تفعيل الحساب
             </div>
-            <div v-show="$parent.checkPermission('BannedAdmin') == true" v-if="mainItem.state != 2" @click="bannedAdmin"
+            <div v-show="$parent.$parent.checkPermission('BannedAdmin') == true" v-if="mainItem.state != 2" @click="bannedAdmin"
                 class="h-12 px-6 mx-4 my-2 bg-orange-400 hover:bg-orange-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fas fa-user-slash ml-2"></i>
                 حظر الحساب
             </div>
 
-            <router-link v-show="$parent.checkPermission('EditRoleAdmin') == true"
+            <router-link v-show="$parent.$parent.checkPermission('EditRoleAdmin') == true"
                 :to="'/admin/admin/' + $route.params.id + '/edit'"
                 class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fas fa-user-shield ml-2"></i>
@@ -156,7 +156,7 @@
             </router-link>
 
 
-            <div v-show="$parent.checkPermission('DeleteAdmin') == true" v-if="mainItem.state != 2" @click="deleteAdmin"
+            <div v-show="$parent.$parent.checkPermission('DeleteAdmin') == true" v-if="mainItem.state != 2" @click="deleteAdmin"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="far fa-trash-alt ml-2"></i>
                 حذف الحساب

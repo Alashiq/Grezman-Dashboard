@@ -7,6 +7,8 @@ import LoadingBox from '../../components/LoadingBox/LoadingBox.vue'
 import axios from 'axios'
 
 export default {
+    inject: ['checkPermission'],
+
     data: function () {
         return {
             t: language,

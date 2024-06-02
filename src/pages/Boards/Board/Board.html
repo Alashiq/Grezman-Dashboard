@@ -111,7 +111,7 @@
             >
 
                 <router-link
-                    v-show="$parent.checkPermission('EditBoard') == true"
+                    v-show="$parent.$parent.checkPermission('EditBoard') == true"
                     :to="'/admin/board/' + $route.params.id + '/edit'"
                     class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
                 >
@@ -122,7 +122,7 @@
 
 
                 <div
-                v-show="$parent.checkPermission('DeleteBoard') == true"
+                v-show="$parent.$parent.checkPermission('DeleteBoard') == true"
                 @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
             >

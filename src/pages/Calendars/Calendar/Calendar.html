@@ -111,7 +111,7 @@
             >
 
                 <router-link
-                    v-show="$parent.checkPermission('EditCalendar') == true"
+                    v-show="$parent.$parent.checkPermission('EditCalendar') == true"
                     :to="'/admin/calendar/' + $route.params.id + '/edit'"
                     class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
                 >
@@ -122,7 +122,7 @@
 
 
                 <div
-                v-show="$parent.checkPermission('DeleteCalendar') == true"
+                v-show="$parent.$parent.checkPermission('DeleteCalendar') == true"
                 @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
             >

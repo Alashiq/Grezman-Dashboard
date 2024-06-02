@@ -126,7 +126,7 @@
         <div class="w-full lg:h-20 mt-12 lg:flex items-center justify-start text-sm cairo">
 
 
-            <div v-show="$parent.checkPermission('DeleteStudent') == true" @click="deleteMainItem"
+            <div v-show="$parent.$parent.checkPermission('DeleteStudent') == true" @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="far fa-trash-alt ml-2"></i>
                 حذف الطالب

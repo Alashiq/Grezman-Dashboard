@@ -61,7 +61,7 @@
             >
 
                 <router-link
-                    v-show="$parent.checkPermission('EditDepartment') == true"
+                    v-show="$parent.$parent.checkPermission('EditDepartment') == true"
                     :to="'/admin/department/' + $route.params.id + '/edit'"
                     class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
                 >
@@ -72,7 +72,7 @@
 
 
                 <div
-                v-show="$parent.checkPermission('DeleteDepartment') == true"
+                v-show="$parent.$parent.checkPermission('DeleteDepartment') == true"
                 @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
             >

@@ -30,7 +30,7 @@
         <!-- Btn Action -->
         <div class="w-full lg:h-20 mt-12 lg:flex items-center justify-start text-sm cairo">
 
-            <router-link v-show="$parent.checkPermission('EditBanner') == true"
+            <router-link v-show="$parent.$parent.checkPermission('EditBanner') == true"
                 :to="'/admin/banner/' + $route.params.id + '/edit'"
                 class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="fa-solid fa-pen-to-square ml-2"></i>
@@ -39,7 +39,7 @@
 
 
 
-            <div v-show="$parent.checkPermission('DeleteBanner') == true" @click="deleteMainItem"
+            <div v-show="$parent.$parent.checkPermission('DeleteBanner') == true" @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
                 <i class="far fa-trash-alt ml-2"></i>
                 حذف البانر

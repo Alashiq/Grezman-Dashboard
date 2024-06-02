@@ -231,7 +231,7 @@
             >
 
                 <router-link
-                    v-show="$parent.checkPermission('EditCollege') == true"
+                    v-show="$parent.$parent.checkPermission('EditCollege') == true"
                     :to="'/admin/college/' + $route.params.id + '/edit'"
                     class="h-12 px-6 mx-4 bg-gray-400 hover:bg-gray-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
                 >
@@ -242,7 +242,7 @@
 
 
                 <div
-                v-show="$parent.checkPermission('DeleteCollege') == true"
+                v-show="$parent.$parent.checkPermission('DeleteCollege') == true"
                 @click="deleteMainItem"
                 class="h-12 px-6 mx-4 my-2 bg-red-400 hover:bg-red-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer"
             >
