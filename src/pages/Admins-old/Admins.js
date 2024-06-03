@@ -131,8 +131,8 @@ export default {
                 cancelButtonText: "إلغاء"
             }).then(result => {
                 if (result.isConfirmed) {
-            /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-            this.$http
+                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
+                    this.$http
                         .ActiveAdmin(id)
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
@@ -164,8 +164,7 @@ export default {
                 cancelButtonText: "إلغاء"
             }).then(result => {
                 if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
+                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
                     this.$http
                         .DisActiveAdmin(id)
                         .then(response => {
@@ -198,8 +197,7 @@ export default {
                 cancelButtonText: "إلغاء"
             }).then(result => {
                 if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
+                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
                     this.$http
                         .DeleteAdmin(id)
                         .then(response => {
@@ -234,8 +232,7 @@ export default {
                 cancelButtonText: "إلغاء"
             }).then(result => {
                 if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
+                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
                     this.$http
                         .BannedAdmin(id)
                         .then(response => {
@@ -260,8 +257,7 @@ export default {
     },
     mounted() {
         this.$store.commit("activePage", this.sideMenuPage);
-                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
+        /*this.$loading.Start();*/ this.$store.commit("loadingStart");
         this.loadData(this.pageId);
     },
     computed: {

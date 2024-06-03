@@ -91,6 +91,67 @@
                 </div>
             </div>
             <!-- Item -->
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    نوع الحساب
+                </div>
+                <select v-model="formData.level" v-on:change="validateLevel"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option value="1">الجامعة</option>
+                    <option value="2">كلية</option>
+                    <option value="3">قسم</option>
+                </select>
+
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.level }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+            
+
+
+            <!-- Item -->
+            <div class="w-full px-4 py-4" v-if="formData.level>1">
+                <div class="h-9 JF-Flat flex items-center text-gray-500 mr-2 text-sm">
+                    الكلية
+                </div>
+                <select v-model="formData.college" v-on:change="validateCollege"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option v-for="(item, index) in college" :key="index" :value="item.Faculty_no">{{ item.Faculty_name
+                        }}
+                    </option>
+                </select>
+                <div class="h-8 JF-Flat text-sm text-red-400 mr-2 flex items-center">
+                    {{ formValidate.college }}
+                </div>
+            </div>
+            <!-- Item -->
+
+            <!-- Item -->
+            <div class="w-full px-4 py-4" v-if="formData.level>2">
+                <div class="h-9 JF-Flat flex items-center text-gray-500 mr-2 text-sm">
+                    القسم
+                </div>
+
+                <select v-model="formData.department" v-on:change="validateDepartment"
+                    class="h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base JF-Flat">
+                    <option v-for="(item, index) in department" :key="index" :value="item.dep_no"
+                        v-if="item.Faculty_no === formData.college">{{ item.dep_name }}
+                    </option>
+                </select>
+                <div class="h-8 JF-Flat text-sm text-red-400 mr-2 flex items-center">
+                    {{ formValidate.department }}
+                </div>
+            </div>
+            <!-- Item -->
+
+
+
+
+
         </div>
         <!-- Grid -->
 

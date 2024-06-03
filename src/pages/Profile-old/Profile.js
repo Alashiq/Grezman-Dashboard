@@ -32,16 +32,17 @@ export default {
             };
             let data = new FormData();
             data.append("file", this.formData.file);
-            this.$loading.Start();
+            /*this.$loading.Start();*/ this.$store.commit("loadingStart");
+
             this.$http
                 .ChangePhoto(data, config)
                 .then(response => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.Success(response.data.message);
                     this.$store.commit("updatePhoto", response.data.photo);
                 })
                 .catch(error => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.BadRequest(error.response.data.message);
                 });
         },
@@ -52,21 +53,21 @@ export default {
             }
             this.validateFirstName();
             if (this.formValidate.first_name != "") return 0;
-
-            this.$loading.Start();
+            this.$store.commit("loadingStart");
+             //this.$loading.Start();
             this.$http
                 .ChangeName({
                     first_name: this.formData.first_name,
                     last_name: this.formData.last_name
                 })
                 .then(response => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.Success(response.data.message);
                     this.$store.commit("updateName",this.formData);
 
                 })
                 .catch(error => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.BadRequest(error.response.data.message);
                 });
         },
@@ -78,21 +79,21 @@ export default {
             if (this.formValidate.new_password != "") return 0;
             if (this.formValidate.confirm_password != "") return 0;
 
-            this.$loading.Start();
+            /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
                 .ChangePassword({
                     old_password: this.formData.old_password,
                     new_password: this.formData.new_password
                 })
                 .then(response => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.Success(response.data.message);
                     this.formData.old_password = "";
                     this.formData.new_password = "";
                     this.formData.confirm_password = "";
                 })
                 .catch(error => {
-                    this.$loading.Stop();
+                    /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.BadRequest(error.response.data.message);
                 });
         },

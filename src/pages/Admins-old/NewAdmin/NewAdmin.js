@@ -1,39 +1,30 @@
-import Swal from "sweetalert2";
-import { mapGetters, mapActions,mapMutations } from "vuex";
-import EmptyBox from '@/components/EmptyBox/EmptyBox.vue';
-import BadRequest from '@/components/BadRequest/BadRequest.vue';
-import NoPermission from '@/components/NoPermission/NoPermission.vue';
-import NoInternet from '@/components/NoInternet/NoInternet.vue';
-import PaginationBar from '@/components/PaginationBar/PaginationBar.vue';
-import SinglePageHeader from '@/components/SinglePageHeader/SinglePageHeader.vue';
-import BtnSubmitNewItem from "@/components/BtnSubmitNewItem/BtnSubmitNewItem.vue";
 export default {
-    components: {
-        'Empty-Box': EmptyBox,
-        'BadRequest': BadRequest,
-        'No-Permission': NoPermission,
-        'No-Internet': NoInternet,
-        'Pagination-Bar': PaginationBar,
-        'Single-Page-Header': SinglePageHeader,
-        'Btn-Submit-New-Item': BtnSubmitNewItem,
-      },
     data() {
         return {
             roleList: [],
+            college: [],
+            department: [],
             formData: {
                 first_name: "",
                 last_name: "",
                 phone: "",
                 password: "",
                 role_id: null,
-                confirmPassword: ""
+                confirmPassword: "",
+                level: 1,  // 1 University - 2 College - 3 Department
+                college: null,
+                department: null,
+
             },
             formValidate: {
                 firstName: "",
                 lastName: "",
                 phone: "",
                 password: "",
-                confirmPassword: ""
+                confirmPassword: "",
+                level: '',
+                college: '',
+                department: '',
             },
             loaded: 0,
             // Side Menu
@@ -57,6 +48,8 @@ export default {
                 if (response.status == 200) {
                     this.loaded = 200;
                     this.roleList = response.data.data.data;
+                    this.college = response.data.college;
+                    this.department = response.data.department;
                     this.$alert.Success(response.data.message);
                 } else if (response.status == 204) {
                     this.loaded = 204;
@@ -86,17 +79,30 @@ export default {
         },
         addNewItem: function () {
             this.validateFirstName();
-            this.validateLastName();
-            this.validatePhone();
-            this.validateRole();
-            this.validatePassword();
-            this.validateConfirmPassword();
             if (this.formValidate.firstName != "") return 0;
+
+            this.validateLastName();
             if (this.formValidate.lastName != "") return 0;
+
+            this.validatePhone();
             if (this.formValidate.phone != "") return 0;
+
+            this.validateRole();
             if (this.formValidate.role != "") return 0;
+
+            this.validatePassword();
             if (this.formValidate.password != "") return 0;
+
+            this.validateConfirmPassword();
             if (this.formValidate.confirmPassword != "") return 0;
+
+            this.validateLevel();
+            if (this.formValidate.level != '') return 0;
+            this.validateCollege();
+            if (this.formValidate.college != '') return 0;
+            this.validateDepartment();
+            if (this.formValidate.department != '') return 0;
+
 
             /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
@@ -199,7 +205,35 @@ export default {
                     "يجب ان يتطابق كلمة المرور الجديدة مع تأكيد كلمة المرور";
                 return 1;
             }
-        }
+        },
+        validateLevel: function () {
+            if(this.formData.level==1){
+                this.formData.college=0;
+                this.formData.department=0;
+            }
+            if(this.formData.level==2){
+                this.formData.department=0;
+            }
+            this.formValidate.level = ''
+            if (this.formData.level == null) {
+                this.formValidate.level = 'لا يمكن ترك هذا الحقل فارغ';
+                return 1;
+            }
+        },
+        validateCollege: function () {
+            this.formValidate.college = ''
+            if (this.formData.college == null || (this.formData.level>1 && this.formData.college==0)) {
+                this.formValidate.college = 'لا يمكن ترك هذا الحقل فارغ';
+                return 1;
+            }
+        },
+        validateDepartment: function () {
+            this.formValidate.department = ''
+            if (this.formData.department == null || (this.formData.level>2 && this.formData.department==0)) {
+                this.formValidate.department = 'لا يمكن ترك هذا الحقل فارغ';
+                return 1;
+            }
+        },
     },
     mounted() {
         this.$store.commit("activePage", this.sideMenuPage);
