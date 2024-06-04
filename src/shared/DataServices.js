@@ -1,36 +1,39 @@
 import axios from "axios";
+// const domain = 'https://cloudsoft.ly/admin/api';
+const domain = 'http://10.100.203.72:8000/admin/v1/api';
+
 export default {
     // ============== Auth Part =======================
     Login(loginData) {
-        return axios.post("https://cloudsoft.ly/admin/api/login", loginData);
+        return axios.post(`${domain}/login`, loginData);
     },
     CheckToken() {
-        return axios.get("https://cloudsoft.ly/admin/api/auth/auth");
+        return axios.get(`${domain}/auth/profile`);
     },
     Logout() {
-        return axios.get("https://cloudsoft.ly/admin/api/logout");
+        return axios.get(`${domain}/logout`);
     },
     ChangeName(formData) {
-        return axios.post("https://cloudsoft.ly/admin/api/auth/editName", formData);
+        return axios.post(`${domain}/auth/name`, formData);
     },
     ChangePassword(formData) {
-        return axios.post("https://cloudsoft.ly/admin/api/auth/editPassword", formData);
+        return axios.post(`${domain}/auth/password`, formData);
     },
     ChangePhoto(data, config) {
-        return axios.post("https://cloudsoft.ly/admin/api/auth/editPhoto", data, config);
+        return axios.post(`${domain}/auth/photo`, data, config);
     },
     // ============== Home Part =======================
     GetHome() {
-        return axios.get("https://cloudsoft.ly/admin/api/home");
+        return axios.get(`${domain}/home`);
     },
 
     
     // ============== Admin Part =======================
     GetAllAdmins(page,countPerPage,tag,phone,firstName,lastName) {
-        return axios.get("https://cloudsoft.ly/admin/api/admin?page=" + page + "&count=" + countPerPage + "&state=" + tag + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
+        return axios.get(`${domain}/admin?page=` + page + "&count=" + countPerPage + "&state=" + tag + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
     },
     ActiveAdmin(admin) {
-        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/active");
+        return axios.put(`${domain}/admin/api/admin/` + admin + "/active");
     },
     DisActiveAdmin(admin) {
         return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/disActive");
@@ -45,16 +48,16 @@ export default {
         return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/reset");
     },
     GetAdminById(admin) {
-        return axios.get("https://cloudsoft.ly/admin/api/admin/" + admin);
+        return axios.get(`${domain}/admin/` + admin);
     },
     GetAdminByIdWithPermissions(admin) {
         return axios.get("https://cloudsoft.ly/admin/api/admin/" + admin + "/withPermissions");
     },
-    GetAdminRolesForNewAdmin() {
-        return axios.get("https://cloudsoft.ly/admin/api/admin/role");
+    GetNewAdmin() {
+        return axios.get(`${domain}/admin/new`);
     },
     PostNewAdmin(admin) {
-        return axios.post("https://cloudsoft.ly/admin/api/admin", admin);
+        return axios.post(`${domain}/admin`, admin);
     },
     UpdateAdminRole(admin, formData) {
         return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/role", formData);
@@ -62,7 +65,7 @@ export default {
 
     // ============== Role Part =======================
     GetAllRoles(page,countPerPage,name) {
-        return axios.get("https://cloudsoft.ly/admin/api/permission?page=" + page + "&count=" + countPerPage + "&name=" + name);
+        return axios.get(`${domain}/permission?page=` + page + "&count=" + countPerPage + "&name=" + name);
     },
     GetRoleById(role) {
         return axios.get("https://cloudsoft.ly/admin/api/permission/" + role);

@@ -137,7 +137,7 @@ export default {
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].state = 1;
+                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 1;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.$alert.Empty(
@@ -171,7 +171,7 @@ export default {
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].state = 0;
+                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 0;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.$alert.Empty(

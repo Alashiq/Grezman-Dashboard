@@ -51,12 +51,12 @@ export default {
         loadData:function(){
         /*this.$loading.Start();*/ this.$store.commit("loadingStart");
         this.$http
-            .GetAllRoles(0,100,'')
+            .GetNewAdmin()
             .then(response => {
                 /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                 if (response.status == 200) {
                     this.loaded = 200;
-                    this.roleList = response.data.data.data;
+                    this.roleList = response.data.roles;
                     this.$alert.Success(response.data.message);
                 } else if (response.status == 204) {
                     this.loaded = 204;

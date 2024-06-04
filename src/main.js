@@ -39,7 +39,7 @@ const store = new Vuex.Store({
   })
 
   
-  app.use(store)
+app.use(store)
 
 app.use(router)
 
@@ -50,9 +50,5 @@ app.config.globalProperties.$alert = Alert
 app.config.globalProperties.$http = DataServices
 app.config.globalProperties.$loading = Loading
 app.config.globalProperties.$lang = Language
-
-app.config.devtools = false
-app.config.performance = true
-
 
 app.mount('#app')

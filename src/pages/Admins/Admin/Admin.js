@@ -87,7 +87,7 @@ export default {
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainItem.state = 1;
+                                this.mainItem.status = 1;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.loaded = 204;
@@ -122,7 +122,7 @@ export default {
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainItem.state = 0;
+                                this.mainItem.status = 0;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.loaded = 204;
@@ -158,7 +158,7 @@ export default {
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainItem.state = 2;
+                                this.mainItem.status = 2;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.loaded = 204;

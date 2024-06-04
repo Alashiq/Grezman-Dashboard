@@ -146,7 +146,7 @@ export default {
                 .Logout()
                 .then(response => {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                    this.$router.push("/admin/login");
+                    this.$router.push("/login");
                     this.$store.commit("clearUser");
                     localStorage.removeItem("token");
                     axios.defaults.headers.common["Authorization"] = null;

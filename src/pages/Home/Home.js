@@ -1,9 +1,9 @@
-import EmptyBox from '@/components/EmptyBox/EmptyBox';
-import BadRequest from '@/components/BadRequest/BadRequest';
-import NoPermission from '@/components/NoPermission/NoPermission';
-import NoInternet from '@/components/NoInternet/NoInternet';
-import PaginationBar from '@/components/PaginationBar/PaginationBar';
-import SinglePageHeader from '@/components/SinglePageHeader/SinglePageHeader';
+import EmptyBox from '@/components/EmptyBox/EmptyBox.vue';
+import BadRequest from '@/components/BadRequest/BadRequest.vue';
+import NoPermission from '@/components/NoPermission/NoPermission.vue';
+import NoInternet from '@/components/NoInternet/NoInternet.vue';
+import PaginationBar from '@/components/PaginationBar/PaginationBar.vue';
+import SinglePageHeader from '@/components/SinglePageHeader/SinglePageHeader.vue';
 
 export default {
     components: {
