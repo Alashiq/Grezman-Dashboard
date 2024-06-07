@@ -46,7 +46,7 @@ export default {
         loadData:function(){
             /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
-                .GetAllPermissionsForNewRole()
+                .GetNewRole()
                 .then(response => {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.loaded = true;

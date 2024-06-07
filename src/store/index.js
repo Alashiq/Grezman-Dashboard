@@ -65,6 +65,53 @@ export default {
 
 
 
+            {
+                id: 11,
+                target: 1,
+                name: 'المستخدمين',
+                nameEn: 'Users',
+                role: 'ReadUser',
+                url: '/user',
+                icon: 'fas fa-user-shield',
+                list: [
+                    {
+                        id: 1,
+                        name: 'قائمة المستخدمين',
+                        nameEn: 'Users List',
+                        role: 'ReadUser',
+                        url: '/admin/user',
+                    },
+                ],
+            },
+
+
+            {
+                id: 12,
+                target: 1,
+                name: 'إشعارات المستخدمين',
+                nameEn: 'Users',
+                role: 'ReadUser',
+                url: '/notification',
+                icon: 'fas fa-user-shield',
+                list: [
+                    {
+                        id: 1,
+                        name: 'قائمة المستخدمين',
+                        nameEn: 'Users Notifications List',
+                        role: 'ReadUser',
+                        url: '/admin/notification',
+                    },
+                    {
+                        id: 2,
+                        name: 'إشعار جديد',
+                        nameEn: 'New User Notification',
+                        role: 'CreateUserNotification',
+                        url: '/admin/notification/new',
+                    },
+                ],
+            },
+
+
 
 
 

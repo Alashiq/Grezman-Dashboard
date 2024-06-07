@@ -1,6 +1,6 @@
 import axios from "axios";
 // const domain = 'https://cloudsoft.ly/admin/api';
-const domain = 'http://10.100.203.72:8000/admin/v1/api';
+const domain = 'http://localhost:8000/admin/v1/api';
 
 export default {
     // ============== Auth Part =======================
@@ -30,28 +30,28 @@ export default {
     
     // ============== Admin Part =======================
     GetAllAdmins(page,countPerPage,tag,phone,firstName,lastName) {
-        return axios.get(`${domain}/admin?page=` + page + "&count=" + countPerPage + "&state=" + tag + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
+        return axios.get(`${domain}/admin?page=` + page + "&count=" + countPerPage + "&status=" + (tag==null?'':tag) + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
     },
     ActiveAdmin(admin) {
-        return axios.put(`${domain}/admin/api/admin/` + admin + "/active");
+        return axios.put(`${domain}/admin/` + admin + "/active");
     },
     DisActiveAdmin(admin) {
-        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/disActive");
+        return axios.put(`${domain}/admin/` + admin + "/disActive");
     },
     DeleteAdmin(admin) {
-        return axios.delete("https://cloudsoft.ly/admin/api/admin/" + admin);
+        return axios.delete(`${domain}/admin/` + admin);
     },
     BannedAdmin(admin) {
-        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/banned");
+        return axios.put(`${domain}/admin/` + admin + "/banned");
     },
     ResetAdminPassword(admin) {
-        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/reset");
+        return axios.put(`${domain}/admin/` + admin + "/reset");
     },
     GetAdminById(admin) {
         return axios.get(`${domain}/admin/` + admin);
     },
-    GetAdminByIdWithPermissions(admin) {
-        return axios.get("https://cloudsoft.ly/admin/api/admin/" + admin + "/withPermissions");
+    GetAdminByIdWithRoles(admin) {
+        return axios.get(`${domain}/admin/` + admin + "/roles");
     },
     GetNewAdmin() {
         return axios.get(`${domain}/admin/new`);
@@ -60,27 +60,27 @@ export default {
         return axios.post(`${domain}/admin`, admin);
     },
     UpdateAdminRole(admin, formData) {
-        return axios.put("https://cloudsoft.ly/admin/api/admin/" + admin + "/role", formData);
+        return axios.put(`${domain}/admin/` + admin , formData);
     },
 
     // ============== Role Part =======================
     GetAllRoles(page,countPerPage,name) {
-        return axios.get(`${domain}/permission?page=` + page + "&count=" + countPerPage + "&name=" + name);
+        return axios.get(`${domain}/role?page=` + page + "&count=" + countPerPage + "&name=" + name);
     },
     GetRoleById(role) {
-        return axios.get("https://cloudsoft.ly/admin/api/permission/" + role);
+        return axios.get(`${domain}/role/` + role);
     },
     DeleteRole(role) {
-        return axios.delete("https://cloudsoft.ly/admin/api/permission/" + role);
+        return axios.delete(`${domain}/role/` + role);
     },
-    GetAllPermissionsForNewRole() {
-        return axios.get("https://cloudsoft.ly/admin/api/permission/allPermissions");
+    GetNewRole() {
+        return axios.get(`${domain}/role/new`);
     },
     PostNewRole(role) {
-        return axios.post("https://cloudsoft.ly/admin/api/permission", role);
+        return axios.post(`${domain}/role`, role);
     },
     EditRole(role, formData) {
-        return axios.put("https://cloudsoft.ly/admin/api/permission/" + role, formData);
+        return axios.put(`${domain}/role/` + role, formData);
     },
 
 
@@ -110,318 +110,37 @@ return axios.get('https://cloudsoft.ly/admin/api/currency/new');
 
 
 
- // ============== BankAccount Part =======================
-GetAllBankAccounts(page,countPerPage,name,branch,account_number) { 
-return axios.get('/admin/api/bankaccount?page=' + page + '&count=' + countPerPage+ '&name=' + name+ '&branch=' + branch+ '&account_number=' + account_number);
-}, 
+ 
+    // ============== User Part =======================
+    GetAllUsers(page,countPerPage,tag,phone,firstName,lastName) {
+        return axios.get(`${domain}/user?page=` + page + "&count=" + countPerPage + "&status=" + (tag==null?'':tag) + "&phone=" + phone + "&first_name=" + firstName + "&last_name=" + lastName);
+    },
 
-DeleteBankAccount(id){
-return axios.delete('/admin/api/bankaccount/' + id);
-}, 
-GetBankAccountById(id){
-return axios.get('/admin/api/bankaccount/' + id);
-}, 
-PostNewBankAccount(formData){
-return axios.post('/admin/api/bankaccount' , formData);
-}, 
-EditBankAccount(id,formData){
-return axios.put('/admin/api/bankaccount/' + id , formData);
-}, 
-GetBankAccountNew(){
-return axios.get('/admin/api/bankaccount/new');
-}, 
+    GetUserById(user) {
+        return axios.get(`${domain}/user/` + user);
+    },
+    BannedUser(user) {
+        return axios.put(`${domain}/user/` + user + "/banned");
+    },
 
+    DeleteUser(user) {
+        return axios.delete(`${domain}/user/` + user);
+    },
 
 
 
+    // ============== User Notifications Part =======================
+    GetAllUserNotifications(page,countPerPage,title,type,is_sent,user_id) {
+        return axios.get(`${domain}/usernotification?page=` + page + "&count=" + countPerPage + "&user_id=" + (user_id==null?'':user_id) + "&title=" + title + "&type=" + type + "&is_sent=" + is_sent);
+    },
 
 
- // ============== Student Part =======================
-GetAllStudents(page,countPerPage,username,email,platform,std_number,first_name,family_name,faculty_id,department_id) { 
-return axios.get('/admin/api/student?page=' + page + '&count=' + countPerPage+ '&username=' + username+ '&email=' + email+ '&platform=' + platform+ '&std_number=' + std_number+ '&first_name=' + first_name+ '&family_name=' + family_name+ '&faculty_id=' + faculty_id+ '&department_id=' + department_id);
-}, 
+    DeleteUserNotification(notification) {
+        return axios.delete(`${domain}/usernotification/` + notification);
+    },
 
-DeleteStudent(id){
-return axios.delete('/admin/api/student/' + id);
-}, 
-GetStudentById(id){
-return axios.get('/admin/api/student/' + id);
-}, 
-PostNewStudent(formData){
-return axios.post('/admin/api/student' , formData);
-}, 
-EditStudent(id,formData){
-return axios.put('/admin/api/student/' + id , formData);
-}, 
-GetStudentNew(){
-return axios.get('/admin/api/student/new');
-}, 
 
 
-
-
-
-
- // ============== College Part =======================
-GetAllColleges(page,countPerPage,name,description,address,study_system) { 
-return axios.get('/admin/api/college?page=' + page + '&count=' + countPerPage+ '&name=' + name+ '&description=' + description+ '&address=' + address+ '&study_system=' + study_system);
-}, 
-
-DeleteCollege(id){
-return axios.delete('/admin/api/college/' + id);
-}, 
-GetCollegeById(id){
-return axios.get('/admin/api/college/' + id);
-}, 
-PostNewCollege(formData){
-return axios.post('/admin/api/college' , formData);
-}, 
-EditCollege(id,formData){
-return axios.put('/admin/api/college/' + id , formData);
-}, 
-GetCollegeNew(){
-return axios.get('/admin/api/college/new');
-}, 
-
-
-
- // ============== Department Part =======================
-GetAllDepartments(page,countPerPage,name) { 
-return axios.get('/admin/api/department?page=' + page + '&count=' + countPerPage+ '&name=' + name);
-}, 
-
-DeleteDepartment(id){
-return axios.delete('/admin/api/department/' + id);
-}, 
-GetDepartmentById(id){
-return axios.get('/admin/api/department/' + id);
-}, 
-PostNewDepartment(formData){
-return axios.post('/admin/api/department' , formData);
-}, 
-EditDepartment(id,formData){
-return axios.put('/admin/api/department/' + id , formData);
-}, 
-GetDepartmentNew(){
-return axios.get('/admin/api/department/new');
-}, 
-
-
-
- // ============== Notification Part =======================
-GetAllNotifications(page,countPerPage,type,student_id,section_id,department_id,college_id,is_sent) { 
-return axios.get('/admin/api/notification?page=' + page + '&count=' + countPerPage+ '&type=' + type+ '&student_id=' + student_id+ '&section_id=' + section_id+ '&department_id=' + department_id+ '&college_id=' + college_id+ '&is_sent=' + is_sent);
-}, 
-
-DeleteNotification(id){
-return axios.delete('/admin/api/notification/' + id);
-}, 
-GetNotificationById(id){
-return axios.get('/admin/api/notification/' + id);
-}, 
-PostNewNotification(formData){
-return axios.post('/admin/api/notification' , formData);
-}, 
-EditNotification(id,formData){
-return axios.put('/admin/api/notification/' + id , formData);
-}, 
-GetNotificationNew(){
-return axios.get('/admin/api/notification/new');
-}, 
-
-
-
- // ============== Banner Part =======================
-GetAllBanners(page,countPerPage) { 
-return axios.get('/admin/api/banner?page=' + page + '&count=' + countPerPage);
-}, 
-
-DeleteBanner(id){
-return axios.delete('/admin/api/banner/' + id);
-}, 
-GetBannerById(id){
-return axios.get('/admin/api/banner/' + id);
-}, 
-PostNewBanner(formData, config){
-return axios.post('/admin/api/banner' , formData, config);
-}, 
-EditBanner(id,formData){
-return axios.put('/admin/api/banner/' + id , formData);
-}, 
-GetBannerNew(){
-return axios.get('/admin/api/banner/new');
-}, 
-
-
-
- // ============== Board Part =======================
-GetAllBoards(page,countPerPage,is_active,level,college,department,admin) { 
-return axios.get('/admin/api/board?page=' + page + '&count=' + countPerPage+ '&is_active=' + is_active+ '&level=' + level+ '&college=' + college+ '&department=' + department+ '&admin=' + admin);
-}, 
-
-DeleteBoard(id){
-return axios.delete('/admin/api/board/' + id);
-}, 
-GetBoardById(id){
-return axios.get('/admin/api/board/' + id);
-}, 
-PostNewBoard(formData){
-return axios.post('/admin/api/board' , formData);
-}, 
-EditBoard(id,formData){
-return axios.put('/admin/api/board/' + id , formData);
-}, 
-GetBoardNew(){
-return axios.get('/admin/api/board/new');
-}, 
-
-
-
- // ============== OldStudent Part =======================
-GetAllOldStudents(page,countPerPage,index,std_number,first_name,family_name,graduation_year,is_solved) { 
-return axios.get('/admin/api/oldstudent?page=' + page + '&count=' + countPerPage+ '&index=' + index+ '&std_number=' + std_number+ '&first_name=' + first_name+ '&family_name=' + family_name+ '&graduation_year=' + graduation_year+ '&is_solved=' + is_solved);
-}, 
-
-DeleteOldStudent(id){
-return axios.delete('/admin/api/oldstudent/' + id);
-}, 
-GetOldStudentById(id){
-return axios.get('/admin/api/oldstudent/' + id);
-}, 
-PostNewOldStudent(formData){
-return axios.post('/admin/api/oldstudent' , formData);
-}, 
-EditOldStudent(id,formData){
-return axios.put('/admin/api/oldstudent/' + id , formData);
-}, 
-GetOldStudentNew(){
-return axios.get('/admin/api/oldstudent/new');
-}, 
-
-
-
- // ============== Calendar Part =======================
-GetAllCalendars(page,countPerPage,name,type,season_id,is_active) { 
-return axios.get('/admin/api/calendar?page=' + page + '&count=' + countPerPage+ '&name=' + name+ '&type=' + type+ '&season_id=' + season_id+ '&is_active=' + is_active);
-}, 
-
-DeleteCalendar(id){
-return axios.delete('/admin/api/calendar/' + id);
-}, 
-GetCalendarById(id){
-return axios.get('/admin/api/calendar/' + id);
-}, 
-PostNewCalendar(formData){
-return axios.post('/admin/api/calendar' , formData);
-}, 
-EditCalendar(id,formData){
-return axios.put('/admin/api/calendar/' + id , formData);
-}, 
-GetCalendarNew(){
-return axios.get('/admin/api/calendar/new');
-}, 
-
-
-
- // ============== College Part =======================
-GetAllColleges(page,countPerPage,name) { 
-return axios.get('/admin/api/college?page=' + page + '&count=' + countPerPage+ '&name=' + name);
-}, 
-
-DeleteCollege(id){
-return axios.delete('/admin/api/college/' + id);
-}, 
-GetCollegeById(id){
-return axios.get('/admin/api/college/' + id);
-}, 
-PostNewCollege(formData){
-return axios.post('/admin/api/college' , formData);
-}, 
-EditCollege(id,formData){
-return axios.put('/admin/api/college/' + id , formData);
-}, 
-GetCollegeNew(){
-return axios.get('/admin/api/college/new');
-}, 
-
-
-
- // ============== Email Part =======================
-GetAllEmails(page,countPerPage,user_id,email,is_created,reset_password) { 
-return axios.get('/admin/api/email?page=' + page + '&count=' + countPerPage+ '&user_id=' + user_id+ '&email=' + email+ '&is_created=' + is_created+ '&reset_password=' + reset_password);
-}, 
-
-DeleteEmail(id){
-return axios.delete('/admin/api/email/' + id);
-}, 
-GetEmailById(id){
-return axios.get('/admin/api/email/' + id);
-}, 
-PostNewEmail(formData){
-return axios.post('/admin/api/email' , formData);
-}, 
-EditEmail(id,formData){
-return axios.put('/admin/api/email/' + id , formData);
-}, 
-GetEmailNew(){
-return axios.get('/admin/api/email/new');
-}, 
-
-
-
- // ============== Email Part =======================
-GetAllEmails(page,countPerPage,user_id,email,is_created,reset_password) { 
-return axios.get('/admin/api/email?page=' + page + '&count=' + countPerPage+ '&user_id=' + user_id+ '&email=' + email+ '&is_created=' + is_created+ '&reset_password=' + reset_password);
-}, 
-
-DeleteEmail(id){
-return axios.delete('/admin/api/email/' + id);
-}, 
-GetEmailById(id){
-return axios.get('/admin/api/email/' + id);
-}, 
-PostNewEmail(formData){
-return axios.post('/admin/api/email' , formData);
-}, 
-EditEmail(id,formData){
-return axios.put('/admin/api/email/' + id , formData);
-}, 
-GetEmailNew(){
-return axios.get('/admin/api/email/new');
-}, 
-
-
-
-
-
-
-
-
-
-
-
-
-
- // ============== DropCourse Part =======================
-GetAllDropCourses(page,countPerPage,std_id,course_id,college_id,department_id,std_name,is_solved) { 
-return axios.get('/admin/api/dropcourse?page=' + page + '&count=' + countPerPage+ '&std_id=' + std_id+ '&course_id=' + course_id+ '&college_id=' + college_id+ '&department_id=' + department_id+ '&std_name=' + std_name+ '&is_solved=' + is_solved);
-}, 
-
-DeleteDropCourse(id){
-return axios.delete('/admin/api/dropcourse/' + id);
-}, 
-GetDropCourseById(id){
-return axios.get('/admin/api/dropcourse/' + id);
-}, 
-PostNewDropCourse(formData){
-return axios.post('/admin/api/dropcourse' , formData);
-}, 
-EditDropCourse(id,formData){
-return axios.put('/admin/api/dropcourse/' + id , formData);
-}, 
-GetDropCourseNew(){
-return axios.get('/admin/api/dropcourse/new');
-}, 
 
 
 

@@ -1,9 +1,19 @@
-<script setup>
-import Loading from '../components/LoadingBox/LoadingBox.vue'
-</script>
+
 
 <template>
   <main>
-    <Loading></Loading>
+    aaa
   </main>
 </template>
+
+
+<script>
+import { useRouter } from 'vue-router'
+export default {  
+  mounted(){
+    const router = useRouter()
+router.push('/admin')
+
+  }
+};
+</script>

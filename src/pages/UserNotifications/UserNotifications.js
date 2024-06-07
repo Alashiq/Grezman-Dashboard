@@ -19,7 +19,6 @@ export default {
         return {
             mainList: [],
             loaded: 0, // 0 not Loaded - 200 Load Success - 204 Empty - 400 Bad Request - 404 No Internet 
-            tagId: null, //null =>All ,  1 => Active , 0 =>Not Active , 2=>Banned 
             pageId:1,
             countPerPage:5, 
             lastPage:0,
@@ -27,14 +26,15 @@ export default {
             itemFrom:0,
             itemTo:0,
             // Search 
-            phoneSrh:"",
-            firstNameSrh:"",
-            lastNameSrh:"",
+            title:"",
+            type:"",
+            is_sent:"",
+            user_id:null,
             // UI
             optionId:0,
             // Side Menu
             sideMenuPage:{
-                main:5,
+                main:12,
                 sub:1,
             },
             errorMessage: "حدث خطأ ما"
@@ -48,7 +48,7 @@ export default {
             this.pageId=page;
             /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
-                .GetAllAdmins(this.pageId,this.countPerPage,this.tagId,this.phoneSrh,this.firstNameSrh,this.lastNameSrh)
+                .GetAllUserNotifications(this.pageId,this.countPerPage,this.title,this.type,this.is_sent,this.user_id)
                 .then(response => {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     if (response.status == 200) {
@@ -85,20 +85,16 @@ export default {
                     }
                 });
         },
-        changeTag(tag) {
-            this.tagId = tag;
-            this.pageId=1;
-            this.loadData(1);
-        },
         changePerPage: function(event){
             this.countPerPage=event.target.value;
             this.pageId=1;
             this.loadData(this.pageId);
         },
         clearSearch:function(){
-            this.phoneSrh="";
-            this.firstNameSrh="";
-            this.lastNameSrh="";
+            this.type="";
+            this.is_sent="";
+            this.title="";
+            this.user_id="";
             this.loadData(this.pageId);
         },
         moveToNext: function(){
@@ -119,77 +115,11 @@ export default {
             }
 
         },
-        activeAdmin: function(id, index) {
-            Swal.fire({
-                title: "هل أنت متأكد",
-                text: "هل أنت متأكد من أنك تريد تفعيل هذا الحساب !",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#16a085",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "نعم تفعيل",
-                cancelButtonText: "إلغاء"
-            }).then(result => {
-                if (result.isConfirmed) {
-            /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-            this.$http
-                        .ActiveAdmin(id)
-                        .then(response => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 1;
-                                this.$alert.Success(response.data.message);
-                            } else if (response.status == 204) {
-                                this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            this.$alert.BadRequest(error.response.data.message);
-                        });
-                }
-            });
-        },
-        disActiveAdmin: function(id, index) {
-            Swal.fire({
-                title: "هل أنت متأكد",
-                text: "هل أنت متأكد من أنك تريد الغاء تفعيل هذا الحساب !",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#16a085",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "نعم إلغاء التفعيل",
-                cancelButtonText: "إلغاء"
-            }).then(result => {
-                if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
 
-                    this.$http
-                        .DisActiveAdmin(id)
-                        .then(response => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 0;
-                                this.$alert.Success(response.data.message);
-                            } else if (response.status == 204) {
-                                this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            this.$alert.BadRequest(error.response.data.message);
-                        });
-                }
-            });
-        },
-        deleteAdmin: function(id) {
+        deleteUserNotification: function(id) {
             Swal.fire({
                 title: "هل أنت متأكد",
-                text: "هل أنت متأكد من أنك تريد حذف هذا الحساب !",
+                text: "هل أنت متأكد من أنك تريد حذف هذا الإشعار !",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#16a085",
@@ -201,7 +131,7 @@ export default {
                                 /*this.$loading.Start();*/ this.$store.commit("loadingStart");
 
                     this.$http
-                        .DeleteAdmin(id)
+                        .DeleteUserNotification(id)
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
@@ -221,41 +151,7 @@ export default {
                 }
             });
         },
-        bannedAdmin: function(id, index) {
-            Swal.fire({
-                title: "هل أنت متأكد",
-                text:
-                    "هل أنت متأكد من أنك تريد حظر هذا الحساب ؟ إذا قمت بحظر الحساب فلا يمكنك استخدامه مجددا",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#16a085",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "نعم حظر الحساب",
-                cancelButtonText: "إلغاء"
-            }).then(result => {
-                if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
 
-                    this.$http
-                        .BannedAdmin(id)
-                        .then(response => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 2;
-                                this.$alert.Success(response.data.message);
-                            } else if (response.status == 204) {
-                                this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            this.$alert.BadRequest(error.response.data.message);
-                        });
-                }
-            });
-        },
 
     },
     mounted() {

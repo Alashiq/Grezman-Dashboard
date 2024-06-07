@@ -16,9 +16,19 @@ import Currencies from '@/pages/Currencies/Currencies.vue';
 import Currency from '@/pages/Currencies/Currency/Currency.vue';
 import NewCurrency from '@/pages/Currencies/NewCurrency/NewCurrency.vue';
 import EditCurrency from '@/pages/Currencies/EditCurrency/EditCurrency.vue';
+import Users from '@/pages/Users/Users.vue';
+import User from "../pages/Users/User/User.vue";
+
+import UserNotifications from "../pages/UserNotifications/UserNotifications.vue";
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/",
+      component: HomeView
+    },
     {
       path: "/login",
       name: 'login',
@@ -37,63 +47,55 @@ const router = createRouter({
         {
           path: "admin/profile",
           component: Profile
-      },
-      {
+        },
+        {
           path: "admin/admin",
           component: Admins
-      },
-      {
+        },
+        {
           path: "admin/admin/new",
           component: NewAdmin
-      },
-      {
+        },
+        {
           path: "admin/admin/:id",
           component: Admin
-      },
-      {
+        },
+        {
           path: "admin/admin/:id/edit",
           component: EditAdminRole
-      },
-      {
+        },
+        {
           path: "admin/role",
           component: Roles
-      },
-      {
+        },
+        {
           path: "admin/role/new",
           component: NewRole
-      },
-      {
+        },
+        {
           path: "admin/role/:id",
           component: Role
-      },
-      {
+        },
+        {
           path: "admin/role/:id/edit",
           component: EditRole
-      },
-      
+        },
 
 
+        {
+          path: 'admin/user',
+          component: Users
+        },
+        {
+          path: "admin/user/:id",
+          component: User
+        },
 
- { 
-  path: 'admin/currency/new', 
-  component: NewCurrency 
-  }, 
-  { 
-  path: 'admin/currency', 
-  component: Currencies 
-  }, 
-  { 
-  path: 'admin/currency/:id', 
-  component: Currency 
-  }, 
-  { 
-  path: 'admin/currency/:id/edit', 
-  component: EditCurrency 
-  }, 
-  
-  
+        {
+          path: 'admin/notification',
+          component: UserNotifications
+        },
 
-  
 
 
       ]

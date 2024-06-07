@@ -51,4 +51,6 @@ app.config.globalProperties.$http = DataServices
 app.config.globalProperties.$loading = Loading
 app.config.globalProperties.$lang = Language
 
+
+
 app.mount('#app')

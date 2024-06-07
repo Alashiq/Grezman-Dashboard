@@ -34,7 +34,7 @@ export default {
             optionId:0,
             // Side Menu
             sideMenuPage:{
-                main:5,
+                main:11,
                 sub:1,
             },
             errorMessage: "حدث خطأ ما"
@@ -48,7 +48,7 @@ export default {
             this.pageId=page;
             /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
-                .GetAllAdmins(this.pageId,this.countPerPage,this.tagId,this.phoneSrh,this.firstNameSrh,this.lastNameSrh)
+                .GetAllUsers(this.pageId,this.countPerPage,this.tagId,this.phoneSrh,this.firstNameSrh,this.lastNameSrh)
                 .then(response => {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     if (response.status == 200) {
@@ -119,74 +119,7 @@ export default {
             }
 
         },
-        activeAdmin: function(id, index) {
-            Swal.fire({
-                title: "هل أنت متأكد",
-                text: "هل أنت متأكد من أنك تريد تفعيل هذا الحساب !",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#16a085",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "نعم تفعيل",
-                cancelButtonText: "إلغاء"
-            }).then(result => {
-                if (result.isConfirmed) {
-            /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-            this.$http
-                        .ActiveAdmin(id)
-                        .then(response => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 1;
-                                this.$alert.Success(response.data.message);
-                            } else if (response.status == 204) {
-                                this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            this.$alert.BadRequest(error.response.data.message);
-                        });
-                }
-            });
-        },
-        disActiveAdmin: function(id, index) {
-            Swal.fire({
-                title: "هل أنت متأكد",
-                text: "هل أنت متأكد من أنك تريد الغاء تفعيل هذا الحساب !",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#16a085",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "نعم إلغاء التفعيل",
-                cancelButtonText: "إلغاء"
-            }).then(result => {
-                if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
-                    this.$http
-                        .DisActiveAdmin(id)
-                        .then(response => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 0;
-                                this.$alert.Success(response.data.message);
-                            } else if (response.status == 204) {
-                                this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
-                            this.$alert.BadRequest(error.response.data.message);
-                        });
-                }
-            });
-        },
-        deleteAdmin: function(id) {
+        deleteUser: function(id) {
             Swal.fire({
                 title: "هل أنت متأكد",
                 text: "هل أنت متأكد من أنك تريد حذف هذا الحساب !",
@@ -201,7 +134,7 @@ export default {
                                 /*this.$loading.Start();*/ this.$store.commit("loadingStart");
 
                     this.$http
-                        .DeleteAdmin(id)
+                        .DeleteUser(id)
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
@@ -221,7 +154,7 @@ export default {
                 }
             });
         },
-        bannedAdmin: function(id, index) {
+        bannedUser: function(id, index) {
             Swal.fire({
                 title: "هل أنت متأكد",
                 text:
@@ -237,11 +170,11 @@ export default {
                                 /*this.$loading.Start();*/ this.$store.commit("loadingStart");
 
                     this.$http
-                        .BannedAdmin(id)
+                        .BannedUser(id)
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 2;
+                                this.mainList[this.mainList.findIndex(m => m.id === id)].status = 3;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
                                 this.$alert.Empty(
