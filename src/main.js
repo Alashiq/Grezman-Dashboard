@@ -51,6 +51,15 @@ app.config.globalProperties.$http = DataServices
 app.config.globalProperties.$loading = Loading
 app.config.globalProperties.$lang = Language
 
+app.mixin({
+  beforeCreate() {
+    if (localStorage.getItem("language") === 'ar' || localStorage.getItem("language") === 'en') {
+      this.$store.commit("channgeLanguage", localStorage.getItem("language"));
+    } else {
+      this.$store.commit("channgeLanguage", 'ar');
+    }
+  }
+})
 
 
 app.mount('#app')
