@@ -99,7 +99,7 @@ const router = createRouter({
           component: UserNotifications
         },
         {
-          path: "admin/notification/new",
+          path: "admin/notification/new/:id?",
           component: NewUserNotification
         },
       {

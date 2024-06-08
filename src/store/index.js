@@ -37,32 +37,6 @@ export default {
                 list: [],
             },
 
-            {
-                id: 10,
-                target: 1,
-                name: 'العملات',
-                nameEn: 'Currencies',
-                role: 'RolePermissionsList',
-                url: '/currency',
-                icon: 'fas fa-user-shield',
-                list: [
-                    {
-                        id: 1,
-                        name: 'قائمة العملات',
-                        nameEn: 'Currencies List',
-                        role: 'ReadCurrency',
-                        url: '/admin/currency',
-                    },
-                    {
-                        id: 2,
-                        name: 'أضف عملة',
-                        nameEn: 'New Currencies',
-                        role: 'CreateCurrency',
-                        url: '/admin/currency/new',
-                    },
-                ],
-            },
-
 
 
             {
@@ -72,7 +46,7 @@ export default {
                 nameEn: 'Users',
                 role: 'ReadUser',
                 url: '/user',
-                icon: 'fas fa-user-shield',
+                icon: 'fas fa-users',
                 list: [
                     {
                         id: 1,
@@ -92,7 +66,7 @@ export default {
                 nameEn: 'User Notifications',
                 role: 'ReadUser',
                 url: '/notification',
-                icon: 'fas fa-user-shield',
+                icon: 'far fa-bell',
                 list: [
                     {
                         id: 1,

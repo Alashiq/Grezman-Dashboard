@@ -98,7 +98,18 @@
             <div
                 class="w-full lg:h-20 mt-12 lg:flex items-center justify-start text-sm cairo"
             >
-                <div
+               
+            
+
+            <router-link v-show="$parent.$parent.checkPermission('CreateUserNotification') == true"
+            :to="'/admin/notification/new/' + $route.params.id"
+            class="h-12 px-6 mx-4 bg-blue-400 hover:bg-blue-500 flex items-center justify-center text-white shadow-lg rounded cursor-pointer">
+            <i class="far fa-bell text-lg ml-2"></i>
+            إرسال إشعار
+        </router-link>
+
+            
+            <div
                     v-show="$parent.$parent.checkPermission('BannedUser') == true"
                     v-if="mainItem.status != 3"
                     @click="bannedUser"

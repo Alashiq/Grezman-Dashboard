@@ -48,6 +48,13 @@ export default {
             this.loadData();
         },
         loadData:function(){
+
+            if(this.$route.params.id){
+                this.formData.user_id=this.$route.params.id;
+                this.formData.type=2;
+            }
+
+
         /*this.$loading.Start();*/ this.$store.commit("loadingStart");
         this.$http
             .GetNewUserNotification()

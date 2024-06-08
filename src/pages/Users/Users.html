@@ -172,7 +172,15 @@
                                 </div>
                             </router-link>
 
-
+                            <router-link :to="'/admin/notification/new/' + item.id"
+                            v-show="$parent.$parent.checkPermission('CreateUserNotification') == true"
+                            class="h-8 w-auto px-2 rounded-lg hover:bg-gray-100 flex items-center justify-start">
+                            <i class="fas fa-bell text-blue-500"></i>
+                            <div class="mr-2">
+                                إرسال إشعار
+                            </div>
+                            <div></div>
+                        </router-link>
 
                             <div v-show="$parent.$parent.checkPermission('BannedUser') == true" v-if="item.status != 3"
                                 @click="bannedUser(item.id, index)"
