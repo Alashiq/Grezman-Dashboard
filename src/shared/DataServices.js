@@ -139,9 +139,16 @@ return axios.get('https://cloudsoft.ly/admin/api/currency/new');
         return axios.delete(`${domain}/usernotification/` + notification);
     },
 
+    GetUserNotificationById(notification) {
+        return axios.get(`${domain}/usernotification/` + notification);
+    },
+    GetNewUserNotification() {
+        return axios.get(`${domain}/usernotification/new`);
+    },
 
-
-
+    PostNewUserNotification(notification) {
+        return axios.post(`${domain}/usernotification`, notification);
+    },
 
 
  //xapi

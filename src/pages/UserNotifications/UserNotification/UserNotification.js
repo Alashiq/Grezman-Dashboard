@@ -17,56 +17,37 @@ export default {
       },
     data() {
         return {
-            mainList: [],
-            loaded: 0, // 0 not Loaded - 200 Load Success - 204 Empty - 400 Bad Request - 404 No Internet 
-            pageId:1,
-            countPerPage:5, 
-            lastPage:0,
-            totalRows:0,
-            itemFrom:0,
-            itemTo:0,
-            // Search 
-            title:"",
-            type:"",
-            is_sent:"",
-            user_id:null,
-            // UI
-            optionId:0,
+            mainItem: [],
+            loaded: 0,
+            // 0 not Loaded - 200 Load Success - 204 Empty - 400 Bad Request - 404 No Internet 
             // Side Menu
-            sideMenuPage:{
-                main:12,
-                sub:1,
+            sideMenuPage: {
+                main: 12,
+                sub: 1,
             },
             errorMessage: "حدث خطأ ما"
         };
     },
     methods: {
-        reload:function(){
-            this.loadData(1)
+        reload: function () {
+            this.loadData();
         },
-        loadData: function(page) {
-            if(this.type==1) this.user_id=null;
-
-
-            this.pageId=page;
+        loadData: function () {
             /*this.$loading.Start();*/ this.$store.commit("loadingStart");
             this.$http
-                .GetAllUserNotifications(this.pageId,this.countPerPage,this.title,this.type,this.is_sent,this.user_id)
+                .GetUserNotificationById(this.$route.params.id)
                 .then(response => {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     if (response.status == 200) {
-                        this.mainList = response.data.data.data;
-                        this.lastPage = response.data.data.last_page;
-                        this.totalRows = response.data.data.total;
-                        this.itemFrom = response.data.data.from;
-                        this.itemTo = response.data.data.to;
+                        this.mainItem = response.data.data;
+                        this.loaded = 200;
                         this.$alert.Success(response.data.message);
-                        this.loaded=200;
                     } else if (response.status == 204) {
-                        this.loaded=204;
-                        this.$alert.Empty("تنبيه لا يوجد اي مشرفين");
-                    }else{
-                    this.loaded=400;
+                        this.loaded = 204;
+                        this.$alert.Empty("هذه العنصر غير متوفرة");
+                    }
+                    else {
+                        this.loaded = 400;
                     }
                 })
                 .catch(error => {
@@ -88,38 +69,7 @@ export default {
                     }
                 });
         },
-        changePerPage: function(event){
-            this.countPerPage=event.target.value;
-            this.pageId=1;
-            this.loadData(this.pageId);
-        },
-        clearSearch:function(){
-            this.type="";
-            this.is_sent="";
-            this.title="";
-            this.user_id="";
-            this.loadData(this.pageId);
-        },
-        moveToNext: function(){
-            this.pageId++;
-            this.loadData(this.pageId);
-        },
-        moveToPrevius: function(){
-            this.pageId--
-            this.loadData(this.pageId);
-        },
-        openOptions: function(event){
-            if(event.target.id==0){
-                this.optionId=0;
-            console.log(event.target.id);
-            }else{
-                this.optionId=event.target.id;
-            console.log(event.target.id);
-            }
-
-        },
-
-        deleteUserNotification: function(id) {
+        deleteUserNotification: function (id) {
             Swal.fire({
                 title: "هل أنت متأكد",
                 text: "هل أنت متأكد من أنك تريد حذف هذا الإشعار !",
@@ -131,19 +81,20 @@ export default {
                 cancelButtonText: "إلغاء"
             }).then(result => {
                 if (result.isConfirmed) {
-                                /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
+                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
                     this.$http
-                        .DeleteUserNotification(id)
+                        .DeleteUserNotification(this.$route.params.id)
                         .then(response => {
                             /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                             if (response.status == 200) {
-                                this.mainList.splice(this.mainList.findIndex(m => m.id === id), 1);
+                                this.mainItem = [];
+                                this.loaded = 204;
                                 this.$alert.Success(response.data.message);
                             } else if (response.status == 204) {
-                                this.mainList.splice(this.mainList.findIndex(m => m.id === id), 1);
+                                this.mainItem = [];
+                                this.loaded = 204;
                                 this.$alert.Empty(
-                                    "لم يعد هذا الحساب متوفرة, قد يكون شخص أخر قام بحذفه"
+                                    "لم يعد هذا الإشعار متوفرة, قد يكون شخص أخر قام بحذفه"
                                 );
                             }
                         })
@@ -154,20 +105,11 @@ export default {
                 }
             });
         },
-
-
     },
     mounted() {
         this.$store.commit("activePage", this.sideMenuPage);
-                    /*this.$loading.Start();*/ this.$store.commit("loadingStart");
-
-        this.loadData(this.pageId);
+        this.loadData();
     },
-    computed: {
-        ...mapGetters(["language"]),
-        t() {
-            return this.$lang.Profile[this.language];
-        }
-    },
-    created() {}
+    computed: {},
+    created() { }
 };

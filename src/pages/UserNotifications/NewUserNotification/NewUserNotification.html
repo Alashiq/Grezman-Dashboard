@@ -1,0 +1,135 @@
+<div class="w-auto md:p-8 p-4">
+    <!-- Inside Page -->
+
+    <div v-if="loaded == 200"
+        class="w-full md:px-4 px-0 pb-8 pt-2 bg-white shadow-2 rounded-lg text-lg text-gray-600 font-medium">
+        <!-- Table Header -->
+        <Single-Page-Header title="إشعار جديد" url="/admin/notification/" urlLabel="قائمة الإشعارات"></Single-Page-Header>
+        <!-- End Table Header -->
+
+
+                    <!-- Item -->
+                    <div class='w-full px-4 py-4  JF-Flat'>
+                        <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                            العنوان
+                        </div>
+        
+                        <input type='text' v-model='formData.title' v-on:change='validateTitle'
+                            class='h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base'>
+                        <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                            {{ formValidate.title }}
+                        </div>
+                    </div>
+                    <!-- End Item -->
+
+         
+                    
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    الرسالة
+                </div>
+<textarea  v-model='formData.message'  v-on:change='validateMessage' class='h-32 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base'></textarea>
+                 <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.message }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+
+
+        <!-- Grid -->
+        <div class="bg-blue-600a grid lg:grid-cols-2">
+
+            
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    النوع
+                </div>
+
+                <div class="flex items-center justify-right">
+
+
+                    <div v-if="formData.type==1" class="h-12 w-24 bg-blue-500 text-white text-base JF-Flat rounded-r-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-white ml-2 text-xl"></i>
+                        عام
+                    </div>
+                    <div v-else @click="formData.type=1; formData.user_id=null" class="h-12 w-24 bg-gray-200 text-gray-600 text-base JF-Flat rounded-r-lg flex items-center justify-center">
+                        عام
+                    </div>
+
+                    <div v-if="formData.type==2" class="h-12 w-24 bg-blue-500 text-white text-base JF-Flat rounded-l-lg flex items-center justify-center">
+                        <i class="fas fa-check-circle text-white ml-2 text-xl"></i>
+                        خاص
+                    </div>
+                    <div v-else @click="formData.type=2" class="h-12 w-24 bg-gray-200 text-gray-600 text-base JF-Flat rounded-l-lg flex items-center justify-center">
+                        خاص
+                    </div>
+
+                </div>
+               
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.type }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat' v-if="formData.type==2">
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                رقم المستخدم
+                </div>
+
+                <input type='text' v-model='formData.user_id' v-on:change='validateUser'
+                    class='h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base'>
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.user_id }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+
+
+            <!-- Item -->
+            <div class='w-full px-4 py-4  JF-Flat'>
+                <div class='h-9 flex items-center text-gray-500 mr-2 text-sm'>
+                    وقت الإرسال
+                </div>
+
+                <input type='datetime-local' v-model='formData.send_time' v-on:change='validateSend_time'
+                    class='h-12 w-full rounded border border-gray-200 bg-gray-50 flex items-center px-4 text-base'>
+                <div class='h-8 text-xs text-red-400 mr-2 flex items-center'>
+                    {{ formValidate.send_time }}
+                </div>
+            </div>
+            <!-- End Item -->
+
+
+
+
+
+            
+
+
+        </div>
+        <!-- Grid -->
+
+        <!-- Action Part -->
+        <div class="flex items-center h-20 mx-4">
+            <Btn-Submit-New-Item label="إضافة" :submit="addNewItem"></Btn-Submit-New-Item>
+        </div>
+        <!-- End Action Part -->
+    </div>
+
+    <Empty-Box v-if="loaded == 204"
+        message="لم نتمكن من جلب بيانات الاشعارات, تأكد من أنك تمتلك صلاحية ارسال اشعار الصفحة"></Empty-Box>
+
+        <Bad-Request v-if="loaded==400" :reload="reload" :message="errorMessage"></Bad-Request>
+        <No-Permission v-if="loaded==403" :message="errorMessage"></No-Permission>
+        <No-Internet v-if="loaded==404" :reload="reload"></No-Internet>
+
+
+    <!-- End Inside Page -->
+</div>

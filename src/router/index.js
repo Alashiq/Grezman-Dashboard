@@ -20,7 +20,8 @@ import Users from '@/pages/Users/Users.vue';
 import User from "../pages/Users/User/User.vue";
 
 import UserNotifications from "../pages/UserNotifications/UserNotifications.vue";
-
+import UserNotification from "../pages/UserNotifications/UserNotification/UserNotification.vue";
+import NewUserNotification from "@/pages/UserNotifications/NewUserNotification/NewUserNotification.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -91,12 +92,20 @@ const router = createRouter({
           component: User
         },
 
+
+
         {
           path: 'admin/notification',
           component: UserNotifications
         },
-
-
+        {
+          path: "admin/notification/new",
+          component: NewUserNotification
+        },
+      {
+          path: "admin/notification/:id",
+          component: UserNotification
+        },
 
       ]
     },

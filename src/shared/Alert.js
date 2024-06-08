@@ -1,4 +1,6 @@
 import Swal from "sweetalert2";
+
+
 export default {
     Success(message) {
         Swal.mixin({
@@ -40,8 +42,11 @@ export default {
             "warning"
         );
         localStorage.removeItem("token");
+        console.log(root);
+        this.root.$router.push("/admin");
         root.$store.commit("clearUser");
-        root.$router.push("/admin/login");
+        root.$router.push("/login");
+
     },
 
 

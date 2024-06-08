@@ -89,14 +89,14 @@ export default {
                 id: 12,
                 target: 1,
                 name: 'إشعارات المستخدمين',
-                nameEn: 'Users',
+                nameEn: 'User Notifications',
                 role: 'ReadUser',
                 url: '/notification',
                 icon: 'fas fa-user-shield',
                 list: [
                     {
                         id: 1,
-                        name: 'قائمة المستخدمين',
+                        name: 'قائمة الإشعارات',
                         nameEn: 'Users Notifications List',
                         role: 'ReadUser',
                         url: '/admin/notification',
