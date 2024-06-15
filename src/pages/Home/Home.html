@@ -1,136 +1,104 @@
 <div class="w-auto md:p-8 p-4">
-    <div
-        class="w-full grid xl:grid-cols-3"
-        v-if="loaded == 200"
-    >
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-blue-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-eye"></i>
+
+
+    <!-- Items  -->
+
+    <div class="w-full grid xl:grid-cols-3  JF-Flat" v-if="loaded == 200">
+
+
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center ">
+            <div class="h-16 w-16 bg-blue-400 rounded-full text-2xl items-center justify-center flex text-white">
+                <i class="fas fa-user-graduate"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{ mainItem.users }} زائر
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{ mainItem.new_student_today }} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الزيارات اليوم
+                    المستخدمين الجدد اليوم
                 </div>
             </div>
         </div>
 
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-eye"></i>
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center">
+            <div class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white">
+                <i class="fas fa-user-graduate"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{ mainItem.users}} زائر
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{ mainItem.new_student_week}} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    زيارات الأسبوع
+                    المستخدمين الجدد الأسبوع
                 </div>
             </div>
         </div>
 
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-red-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-eye"></i>
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center">
+            <div class="h-16 w-16 bg-red-400 rounded-full text-2xl items-center justify-center flex text-white">
+                <i class="fas fa-user-graduate"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{mainItem.users }} زائر
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{mainItem.new_student_month }} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    زيارات الشهر
+                    المستخدمين الجدد الشهر
                 </div>
             </div>
         </div>
 
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-yellow-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-comment-dots"></i>
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center">
+            <div class="h-16 w-16 bg-yellow-400 rounded-full text-2xl items-center justify-center flex text-white">
+                <i class="fas fa-users"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{ mainItem.users }} رسالة
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{ mainItem.all_student }} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    رسائل اليوم
+                    كل المستخدمين
                 </div>
             </div>
         </div>
 
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-gray-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-comment-dots"></i>
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center">
+            <div class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
+                style="background-color: #a4c939;">
+                <i class="fab fa-android"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{ mainItem.users }} رسالة
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{ mainItem.all_student_android }} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الرسائل الغير محلولة
+                    مستخدمي الاندرويد
                 </div>
             </div>
         </div>
 
-        <div
-            class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center"
-        >
-            <div
-                class="h-16 w-16 bg-green-400 rounded-full text-2xl items-center justify-center flex text-white"
-            >
-                <i class="fas fa-comment-dots"></i>
+        <div class="h-40 bg-white shadow-3 mx-3 mb-8 px-6 rounded-lg flex items-center">
+            <div class="h-16 w-16 rounded-full text-2xl items-center justify-center flex text-white"
+                style="background-color: #464646;">
+                <i class="fab fa-apple"></i>
             </div>
             <div class="mr-8">
-                <div
-                    class="text-3xl text-gray-700 font-semibold h-20 flex items-center"
-                >
-                    {{ mainItem.users }} رسالة
+                <div class="text-3xl text-gray-700 font-semibold h-20 flex items-center">
+                    {{ mainItem.all_student_ios }} مستخدم
                 </div>
                 <div class="text-gray-500 flex items-center h-4">
-                    الرسائل المحلولة
+                    مستخدمي IOS
                 </div>
             </div>
         </div>
+
+
+
     </div>
+    <!-- End Items -->
 
-    <div
-        class="w-auto mx-4 bg-white shadow-3 mt-8 rounded-lg px-6"
-        v-if="loaded == 200"
-    >
-        <div
-            class="h-20 w-full flex items-center text-2xl bg-blu font-semibold cairo text-gray-600 border-b"
-        >
+    <div class="w-auto mx-4 bg-white shadow-3 mt-8 rounded-lg px-6" v-if="loaded == 200">
+        <div class="h-20 w-full flex items-center text-2xl bg-blu font-semibold cairo text-gray-600 border-b">
             مخطط الزيارات
         </div>
 
