@@ -94,7 +94,7 @@ export default {
                     /*this.$loading.Stop();*/ this.$store.commit("loadingStop");
                     this.$alert.Success(response.data.message);
                     this.$store.commit("setUser", response.data.admin);
-                    this.$store.commit("setPermissions", response.data.permissions);
+                    this.$store.commit("setPermissions", response.data.admin.permissions);
                     this.$store.commit("authLoaded");
                     this.$router.push("/admin");
                 })
